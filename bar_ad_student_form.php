@@ -23,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', NULL)";
 
     if (mysqli_query($conn, $sql)) {
-        echo "<script>alert('Student saved successfully!');</script>";
-    } else {
+        header("Location: bar_ad_student.php");
+        exit();
+    }else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
 }
