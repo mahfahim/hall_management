@@ -13,9 +13,9 @@
             <div class="logo">BIJOY 24 HALL</div>
             <nav>
                 <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="administration.php">Administration</a></li>
-                    <li><a href="#">Notice</a></li>
+                    <li><a href="notice.php">Notice</a></li>
                     <li><a href="contact.php">Contact</a></li>
                     <li><a href="#">Login</a></li>
                 </ul>
