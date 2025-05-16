@@ -1,10 +1,32 @@
 <?php
 session_start();
+include 'db_connect.php'; // Database connection
 
 // Prevent access if not logged in
 if (!isset($_SESSION['role'])) {
-    header("Location: .php"); // Redirect to login page
+    header("Location: login.php"); // Redirect to login page
     exit();
+}
+
+// Optional: Handle form submission
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $student_id = $_POST['student-id'];
+    $student_name = $_POST['student-name'];
+    $reg_id = $_POST['reg-id'];
+    $faculty = $_POST['faculty'];
+    $semester = $_POST['semester'];
+    $session_val = $_POST['session'];
+    $room_no = $_POST['room-no'];
+
+    // Insert into students (simplified, you may need email, phone, etc.)
+    $sql = "INSERT INTO students (id, name, reg_id, faculty, semester, session, room_id)
+            VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', NULL)";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Student saved successfully!');</script>";
+    } else {
+        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -37,8 +59,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
 
-          <!-- ✅ Add this logout option -->
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -51,58 +72,51 @@ if (!isset($_SESSION['role'])) {
     </div>
   </div>
 
-
   <div class="main-content">
-    <!-- Your main content goes here -->
-
     <div class="form-container">
-    <h2>Student Form</h2>
-    <form action="#" method="post">
-      <div class="form-group">
-        <label for="student-id">ID</label>
-        <input type="number" id="student-id" name="student-id" required>
-      </div>
+      <h2>Student Form</h2>
+      <form action="" method="post">
+        <div class="form-group">
+          <label for="student-id">ID</label>
+          <input type="number" id="student-id" name="student-id" required>
+        </div>
 
-      <div class="form-group">
-        <label for="student-name">Name</label>
-        <input type="text" id="student-name" name="student-name" required>
-      </div>
+        <div class="form-group">
+          <label for="student-name">Name</label>
+          <input type="text" id="student-name" name="student-name" required>
+        </div>
 
-      <div class="form-group">
-        <label for="reg-id">Reg ID</label>
-        <input type="text" id="reg-id" name="reg-id" required>
-      </div>
+        <div class="form-group">
+          <label for="reg-id">Reg ID</label>
+          <input type="text" id="reg-id" name="reg-id" required>
+        </div>
 
-      <div class="form-group">
-        <label for="faculty">Faculty</label>
-        <input type="text" id="faculty" name="faculty" required>
-      </div>
+        <div class="form-group">
+          <label for="faculty">Faculty</label>
+          <input type="text" id="faculty" name="faculty" required>
+        </div>
 
-      <div class="form-group">
-        <label for="semester">Semester</label>
-        <input type="text" id="semester" name="semester" required>
-      </div>
+        <div class="form-group">
+          <label for="semester">Semester</label>
+          <input type="text" id="semester" name="semester" required>
+        </div>
 
-      <div class="form-group">
-        <label for="session">Session</label>
-        <input type="text" id="session" name="session" required>
-      </div>
+        <div class="form-group">
+          <label for="session">Session</label>
+          <input type="text" id="session" name="session" required>
+        </div>
 
-      <div class="form-group">
-        <label for="room-no">Room No</label>
-        <input type="text" id="room-no" name="room-no" required>
-      </div>
+        <div class="form-group">
+          <label for="room-no">Room No</label>
+          <input type="text" id="room-no" name="room-no" required>
+        </div>
 
-      <div class="form-group full-width">
-        <button type="submit" class="submit-btn">Save Student</button>
-      </div>
-    </form>
+        <div class="form-group full-width">
+          <button type="submit" class="submit-btn">Save Student</button>
+        </div>
+      </form>
+    </div>
   </div>
-
-  </div>
-
-
-
 
 </body>
 </html>
