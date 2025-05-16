@@ -1,0 +1,150 @@
+/* RESET + BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  height: 100vh;
+  background-color: #1e293b;
+  color: #fff;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  background-color: #111827;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.logo {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #4f46e5;
+  margin-bottom: 30px;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0 20px;
+  flex-grow: 1;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.nav-links li {
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav-links li:hover,
+.nav-links .active {
+  background-color: #374151;
+}
+
+.user-profile {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #0f172a;
+  border-top: 1px solid #2d3748;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #1d1a1a;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  justify-content: center;     /* Horizontally center */
+  align-items: flex-start;     /* Align to top */
+  padding-top: 60px;           /* Space from top */
+}
+
+
+/* TABLE SECTION */
+.table-section {
+  position: relative;
+  width: 80%;
+}
+
+.add-button {
+  display: block;
+  width: fit-content;          /* Keeps width only as wide as needed */
+  margin: 0 auto 15px auto;    /* Centers the button horizontally */
+  padding: 8px 16px;
+  background-color: #28a745;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.student-table {
+  width: 100%;
+  max-width: 1000px;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  margin: 0 auto;
+}
+
+.student-table th,
+.student-table td {
+  padding: 10px;
+  border: 1px solid #444;
+  text-align: center;
+}
+
+.edit-btn {
+  background-color: #ffc107;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.edit-btn:hover {
+  background-color: #e0a800;
+}
+
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
