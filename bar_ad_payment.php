@@ -30,7 +30,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="room_application.php"><i>🛏️</i> Room Application</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
-          <li><a href="#"><i>👨‍💼</i> Admin Dashboard</a></li>
+          <li><a href="bar_admin.php"><i>👨‍💼</i> Admin Dashboard</a></li>
           <li><a href="bar_ad_student.php"><i>👨‍🎓</i> All Student</a></li>
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
@@ -99,8 +99,10 @@ if (!isset($_SESSION['role'])) {
                   echo "<td><input type='text' value='" . htmlspecialchars($row['transaction_id']) . "' readonly></td>";
 
                   echo "<td>
-                          <a href='bar_ad_payment_form.php?edit={$row['id']}' class='edit-btn'>Edit</a>
-                          <a href='bar_ad_payment_form.php?delete={$row['id']}' class='delete-btn' onclick=\"return confirm('Are you sure?')\">Delete</a>
+                          <div style='display: flex; gap: 10px; text-decoration:none'>
+                            <a href='bar_ad_payment_form.php?edit={$row['id']}' class='edit-btn' style='text-decoration: none;'>Edit</a>
+                            <a href='bar_ad_payment_form.php?delete={$row['id']}'  style='text-decoration: none;'  class='delete-btn' onclick=\"return confirm('Are you sure?')\">Delete</a>
+                          </div>
                         </td>";
                   echo "</tr>";
               }
