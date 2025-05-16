@@ -1,3 +1,4 @@
+<?php include 'db_connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,45 +32,44 @@
         <table class="student-table">
             <thead>
                 <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Reg ID</th>
-                <th>Faculty</th>
-                <th>Semester</th>
-                <th>Session</th>
-                <th>Room No</th>
-                <th>Action</th>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Reg ID</th>
+                  <th>Faculty</th>
+                  <th>Semester</th>
+                  <th>Session</th>
+                  <th>Room No</th>
+                  <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fahim</td>
-                    <td>2022-12345</td>
-                    <td>CSE</td>
-                    <td>4th</td>
-                    <td>2021-22</td>
-                    <td>203</td>
-                    <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Saif</td>
-                    <td>2022-67890</td>
-                    <td>CSE</td>
-                    <td>4th</td>
-                    <td>2021-22</td>
-                    <td>205</td>
-                    <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
+                <?php
+                $sql = "SELECT students.*, rooms.room_number 
+                        FROM students 
+                        LEFT JOIN rooms ON students.room_id = rooms.id";
+                $result = mysqli_query($conn, $sql);
 
+                if (mysqli_num_rows($result) > 0) {
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['reg_id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['faculty']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['semester']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['session']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['room_number'] ?? 'N/A') . "</td>";
+                    echo "<td>
+                            <button class='edit-btn'>Edit</button>
+                            <button class='delete-btn'>Delete</button>
+                          </td>";
+                    echo "</tr>";
+                  }
+                } else {
+                  echo "<tr><td colspan='8'>No students found.</td></tr>";
+                }
+                ?>
+            </tbody>
         </table>
     </div>
   </div>
