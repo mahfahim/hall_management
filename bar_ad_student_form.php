@@ -1,31 +1,62 @@
 <?php
 session_start();
-include 'db_connect.php'; // Database connection
+include 'db_connect.php';
 
-// Prevent access if not logged in
 if (!isset($_SESSION['role'])) {
-    header("Location: login.php"); // Redirect to login page
+    header("Location: login.php");
     exit();
 }
 
-// Optional: Handle form submission
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// Delete
+if (isset($_GET['delete'])) {
+    $idToDelete = $_GET['delete'];
+    mysqli_query($conn, "DELETE FROM students WHERE id = '$idToDelete'");
+    header("Location: bar_ad_student_form.php");
+    exit();
+}
+
+// Edit
+$editMode = false;
+$editStudent = [];
+
+if (isset($_GET['edit'])) {
+    $editMode = true;
+    $editId = $_GET['edit'];
+    $result = mysqli_query($conn, "SELECT * FROM students WHERE id = '$editId'");
+    $editStudent = mysqli_fetch_assoc($result);
+}
+
+// Save or Update
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $student_id = $_POST['student-id'];
     $student_name = $_POST['student-name'];
+    $email = $_POST['email'];
     $reg_id = $_POST['reg-id'];
     $faculty = $_POST['faculty'];
     $semester = $_POST['semester'];
     $session_val = $_POST['session'];
     $room_no = $_POST['room-no'];
+    $edit_id = $_POST['edit-id'];
 
-    // Insert into students (simplified, you may need email, phone, etc.)
-    $sql = "INSERT INTO students (id, name, reg_id, faculty, semester, session, room_id)
-            VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', NULL)";
+    if ($edit_id) {
+        $sql = "UPDATE students SET 
+                name = '$student_name',
+                email = '$email',
+                reg_id = '$reg_id',
+                faculty = '$faculty',
+                semester = '$semester',
+                session = '$session_val',
+                room_id = '$room_no'
+                WHERE id = '$edit_id'";
+    } else {
+        $sql = "INSERT INTO students (id, name, reg_id, faculty, semester, session, room_id, email)
+                VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', '$room_no', '$email')";
+    }
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: bar_ad_student.php");
+        header("Location: bar_ad_student_form.php");
         exit();
-    }else {
+    } else {
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
 }
@@ -86,6 +117,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <label for="student-name">Name</label>
           <input type="text" id="student-name" name="student-name" required>
         </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
 
         <div class="form-group">
           <label for="reg-id">Reg ID</label>
