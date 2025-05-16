@@ -1,16 +1,18 @@
 <?php
 include 'db_connect.php';
 session_start();
+
 if (!isset($_SESSION['role'])) {
     header("Location: account_student.php");
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Table</title>
+  <title>All Student</title>
   <link rel="stylesheet" href="style3.css">
 
 </head>
@@ -37,7 +39,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
-
+      <!-- ✅ Add this logout option -->
       <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 

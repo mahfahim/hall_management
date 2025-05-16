@@ -3,7 +3,7 @@ session_start();
 include 'db_connect.php';
 
 if (!isset($_SESSION['role'])) {
-    header("Location: login.php");
+    header("Location: account_student.php");
     exit();
 }
 
@@ -11,7 +11,7 @@ if (!isset($_SESSION['role'])) {
 if (isset($_GET['delete'])) {
     $idToDelete = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM students WHERE id = '$idToDelete'");
-    header("Location: bar_ad_student_form.php");
+    header("Location: bar_ad_student.php");
     exit();
 }
 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $semester = $_POST['semester'];
     $session_val = $_POST['session'];
     $room_no = $_POST['room-no'];
-    $edit_id = $_POST['edit-id'];
+    $edit_id = $_POST['edit-id'] ?? null;
 
     if ($edit_id) {
         $sql = "UPDATE students SET 
@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
+
     <div class="user-profile">
       <span style="font-size: 40px;">👤</span>
       <span>
@@ -110,47 +112,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <form action="" method="post">
         <div class="form-group">
           <label for="student-id">ID</label>
-          <input type="number" id="student-id" name="student-id" required>
+          <input type="number" id="student-id" name="student-id" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['id']) : '' ?>"
+            <?= $editMode ? 'readonly' : '' ?>>
         </div>
 
         <div class="form-group">
           <label for="student-name">Name</label>
-          <input type="text" id="student-name" name="student-name" required>
+          <input type="text" id="student-name" name="student-name" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['name']) : '' ?>">
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['email']) : '' ?>">
         </div>
-
 
         <div class="form-group">
           <label for="reg-id">Reg ID</label>
-          <input type="text" id="reg-id" name="reg-id" required>
+          <input type="text" id="reg-id" name="reg-id" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['reg_id']) : '' ?>">
         </div>
 
         <div class="form-group">
           <label for="faculty">Faculty</label>
-          <input type="text" id="faculty" name="faculty" required>
+          <input type="text" id="faculty" name="faculty" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['faculty']) : '' ?>">
         </div>
 
         <div class="form-group">
           <label for="semester">Semester</label>
-          <input type="text" id="semester" name="semester" required>
+          <input type="text" id="semester" name="semester" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['semester']) : '' ?>">
         </div>
 
         <div class="form-group">
           <label for="session">Session</label>
-          <input type="text" id="session" name="session" required>
+          <input type="text" id="session" name="session" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['session']) : '' ?>">
         </div>
 
         <div class="form-group">
           <label for="room-no">Room No</label>
-          <input type="text" id="room-no" name="room-no" required>
+          <input type="text" id="room-no" name="room-no" required
+            value="<?= $editMode ? htmlspecialchars($editStudent['room_id']) : '' ?>">
         </div>
 
+        <?php if ($editMode): ?>
+          <input type="hidden" name="edit-id" value="<?= htmlspecialchars($editStudent['id']) ?>">
+        <?php endif; ?>
+
         <div class="form-group full-width">
-          <button type="submit" class="submit-btn">Save Student</button>
+          <button type="submit" class="submit-btn">
+            <?= $editMode ? 'Update Student' : 'Save Student' ?>
+          </button>
         </div>
       </form>
     </div>

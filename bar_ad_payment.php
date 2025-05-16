@@ -1,9 +1,9 @@
 <?php
+include 'db_connect.php';
 session_start();
 
-// Prevent access if not logged in
 if (!isset($_SESSION['role'])) {
-    header("Location: .php"); // Redirect to login page
+    header("Location: account_student.php");
     exit();
 }
 ?>
@@ -12,12 +12,13 @@ if (!isset($_SESSION['role'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Table</title>
+  <title>Student Payment</title>
   <link rel="stylesheet" href="style3.css">
 </head>
 <body>
 
-   <div class="sidebar">
+  <!-- SIDEBAR -->
+  <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
       <li><a href="bar_admin.php"><i>🏠</i> Home</a></li>
@@ -30,16 +31,14 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
           <li><a href="#"><i>👨‍💼</i> Admin Dashboard</a></li>
-          <li><a href="bar_ad_student.php"><i>👨‍💼</i> All Student</a></li>
+          <li><a href="bar_ad_student.php"><i>👨‍🎓</i> All Student</a></li>
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
-
-          <!-- ✅ Add this logout option -->
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -52,54 +51,65 @@ if (!isset($_SESSION['role'])) {
     </div>
   </div>
 
-
-  <!-- Main Content -->
+  <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="table-section">
-      <p  class="add-button">Hall Fee</p>
-        <table class="student-table">
-            <thead>
-                <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Reg ID</th>
-                <th>Faculty</th>
-                <th>Semester</th>
-                <th>Session</th>
-                <th>Hall Fee</th>
-                <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Fahim</td>
-                    <td>2022-12345</td>
-                    <td>CSE</td>
-                    <td>4th</td>
-                    <td>2021-22</td>
-                    <td>2000</td>
-                    <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Saif</td>
-                    <td>2022-67890</td>
-                    <td>CSE</td>
-                    <td>4th</td>
-                    <td>2021-22</td>
-                    <td>2000</td>
-                    <td>
-                    <button class="edit-btn">Edit</button>
-                    <button class="delete-btn">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
+      <a href="bar_ad_payment_form.php" class="add-button">Add Payment</a>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Reg ID</th>
+            <th>Faculty</th>
+            <th>Semester</th>
+            <th>Session</th>
+            <th>Hall Fee</th>
+            <th>Payment Method</th>
+            <th>Transaction ID</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          $sql = "SELECT payments.*, students.name, students.reg_id, students.faculty, students.semester, students.session 
+                  FROM payments 
+                  LEFT JOIN students ON payments.student_id = students.id";
+          $result = mysqli_query($conn, $sql);
 
-        </table>
+          if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                  echo "<td>{$row['id']}</td>";
+                  echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['reg_id']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['faculty']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['semester']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['session']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['amount']) . "</td>";
+
+                  echo "<td>
+                          <select name='payment_method_{$row['id']}' disabled>
+                            <option value='Bkash' " . ($row['payment_method'] === 'Bkash' ? 'selected' : '') . ">Bkash</option>
+                            <option value='Nagad' " . ($row['payment_method'] === 'Nagad' ? 'selected' : '') . ">Nagad</option>
+                            <option value='Rocket' " . ($row['payment_method'] === 'Rocket' ? 'selected' : '') . ">Rocket</option>
+                          </select>
+                        </td>";
+
+                  echo "<td><input type='text' value='" . htmlspecialchars($row['transaction_id']) . "' readonly></td>";
+
+                  echo "<td>
+                          <a href='bar_ad_payment_form.php?edit={$row['id']}' class='edit-btn'>Edit</a>
+                          <a href='bar_ad_payment_form.php?delete={$row['id']}' class='delete-btn' onclick=\"return confirm('Are you sure?')\">Delete</a>
+                        </td>";
+                  echo "</tr>";
+              }
+          } else {
+              echo "<tr><td colspan='10'>No payment records found.</td></tr>";
+          }
+          ?>
+        </tbody>
+      </table>
     </div>
   </div>
 
