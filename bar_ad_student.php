@@ -34,7 +34,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
-          <li><a href="notice_manage.php"><i>📢</i> Notice Manage</a></li>
+          <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
 

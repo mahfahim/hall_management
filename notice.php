@@ -1,3 +1,4 @@
+<?php include 'db_connect.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,33 +23,38 @@
             </nav>
         </div>
     </header>
-   <hr>
-  <h1 class="notice-title">Notice Board</h1>
+    <hr>
+    <h1 class="notice-title">Notice Board</h1>
 
-  <div class="notice-section" id="Notice">
-    <table class="notice-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Title</th>
-          <th>Details</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>2025-04-28</td>
-          <td>Room Allotment Notice</td>
-          <td>Room allotment for new students has been updated. Check the board.</td>
-        </tr>
-        <tr>
-          <td>2025-04-20</td>
-          <td>Maintenance Schedule</td>
-          <td>Hall maintenance will occur from May 1 to May 3.</td>
-        </tr>
-        <!-- More rows as needed -->
-      </tbody>
-    </table>
-  </div>
+    <div class="notice-section" id="Notice">
+        <table class="notice-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $sql = "SELECT title, content, publish_date FROM notices WHERE is_published = 1 ORDER BY publish_date DESC";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result && mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars(date("Y-m-d", strtotime($row['publish_date']))) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['title']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['content']) . "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='3'>No notices available.</td></tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>
