@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+// Prevent access if not logged in
+if (!isset($_SESSION['role'])) {
+    header("Location: .php"); // Redirect to login page
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
