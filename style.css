@@ -64,17 +64,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
     text-align: center;
 }
 
 .hero-section .hero-content h1 {
     font-size: 48px;
+    color: #a03636;
     margin-bottom: 20px;
 }
 
 .hero-section .hero-content p {
     font-size: 20px;
+    color: #fff;
 }
 
 
