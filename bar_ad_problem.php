@@ -17,7 +17,8 @@ if (!isset($_SESSION['role'])) {
   <link rel="stylesheet" href="style3.css" />
 </head>
 <body>
-    <div class="sidebar">
+  
+   <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
       
@@ -26,7 +27,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> All Room</a></li>
-          <li><a href="room_application.php"><i>🛏️</i> Room Application</a></li>
+          <li><a href="bar_std_room_appli_form.php"><i>🛏️</i> Room Application</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
           <li><a href="bar_admin.php"><i>👨‍💼</i> Admin Dashboard</a></li>
@@ -34,6 +35,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
+          <li><a href="bar_std_room_appli.php"><i>🛠️</i>Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>

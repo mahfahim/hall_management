@@ -35,6 +35,7 @@ $paid_students = mysqli_fetch_assoc($payments_result)['paid_students'];
   <link rel="stylesheet" href="style6.css" />
 </head>
 <body>
+  
   <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
