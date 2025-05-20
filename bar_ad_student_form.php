@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $faculty = $_POST['faculty'];
     $semester = $_POST['semester'];
     $session_val = $_POST['session'];
-    $room_no = $_POST['room-no'];/////
+    $room_no = !empty($_POST['room-no']) ? $_POST['room-no'] : 'NULL';
     $edit_id = $_POST['edit-id'] ?? null;
 
     if ($edit_id) {
@@ -46,17 +46,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 faculty = '$faculty',
                 semester = '$semester',
                 session = '$session_val',
-                room_id = '$room_no'
+                room_id = " . ($room_no === 'NULL' ? 'NULL' : "'$room_no'") . "
                 WHERE id = '$edit_id'";
     } else {
         $sql = "INSERT INTO students (id, name, reg_id, faculty, semester, session, room_id, email)
-                VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', '$room_no', '$email')";
+                VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', " . 
+                ($room_no === 'NULL' ? 'NULL' : "'$room_no'") . ", '$email')";
     }
 
     if (mysqli_query($conn, $sql)) {
         header("Location: bar_ad_student_form.php");
         exit();
     } else {
+        error_log("MySQL Error: " . mysqli_error($conn));
         echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
     }
 }
@@ -74,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-      
 
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
@@ -94,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
-
 
     <div class="user-profile">
       <span style="font-size: 40px;">👤</span>
@@ -155,8 +155,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-group">
           <label for="room-no">Room No</label>
-          <input type="text" id="room-no" name="room-no" required
-            value="<?= $editMode ? htmlspecialchars($editStudent['room_id']) : '' ?>">
+          <select id="room-no" name="room-no">
+            <option value="">--Select Room--</option>
+            <?php
+            $roomResult = mysqli_query($conn, "SELECT id FROM rooms");
+            while ($room = mysqli_fetch_assoc($roomResult)) {
+                $selected = ($editMode && $editStudent['room_id'] == $room['id']) ? 'selected' : '';
+                echo "<option value='{$room['id']}' $selected>{$room['id']}</option>";
+            }
+            ?>
+          </select>
         </div>
 
         <?php if ($editMode): ?>

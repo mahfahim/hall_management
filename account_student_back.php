@@ -27,7 +27,7 @@ if (isset($_POST['student_username']) && isset($_POST['student_password'])) {
             $_SESSION['student_name'] = $row['name'];
             $_SESSION['role'] = 'student';
 
-            header("Location: bar_admin.php");
+            header("Location: bar_student.php");
             exit();
         } else {
             $_SESSION['login_error'] = "Incorrect password.";
