@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> All Room</a></li>
           <li><a href="bar_std_room_appli_form.php"><i>🛏️</i> Room Application</a></li>
-          <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem Assign</a></li>
+          <li><a href="bar_std_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
           <li><a href="bar_admin.php"><i>👨‍💼</i> Admin Dashboard</a></li>
           <li><a href="bar_ad_student.php"><i>👨‍💼</i> All Student</a></li>

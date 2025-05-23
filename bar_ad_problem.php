@@ -1,10 +1,19 @@
 <?php
 session_start();
 
-// Prevent access if not logged in
 if (!isset($_SESSION['role'])) {
-    header("Location: .php"); // Redirect to login page
+    header("Location: login.php");
     exit();
+}
+
+// Database connection
+$host = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "hall_management";
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
 }
 ?>
 
@@ -17,30 +26,26 @@ if (!isset($_SESSION['role'])) {
   <link rel="stylesheet" href="style3.css" />
 </head>
 <body>
-  
-   <div class="sidebar">
+
+  <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-      
-
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> All Room</a></li>
           <li><a href="bar_std_room_appli_form.php"><i>🛏️</i> Room Application</a></li>
-          <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem Assign</a></li>
+          <li><a href="bar_std_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
           <li><a href="bar_admin.php"><i>👨‍💼</i> Admin Dashboard</a></li>
           <li><a href="bar_ad_student.php"><i>👨‍💼</i> All Student</a></li>
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
-          <li><a href="bar_std_room_appli.php"><i>🛠️</i>Room Application</a></li>
+          <li><a href="bar_std_room_appli.php"><i>🛠️</i> Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
-
-          <!-- ✅ Add this logout option -->
           <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
@@ -48,12 +53,11 @@ if (!isset($_SESSION['role'])) {
       <span style="font-size: 40px;">👤</span>
       <span>
         <?= htmlspecialchars(
-          isset($_SESSION['student_name']) ? $_SESSION['student_name'] : (isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'User')
+          $_SESSION['student_name'] ?? ($_SESSION['admin_name'] ?? 'User')
         ); ?>
       </span>
     </div>
   </div>
-
 
   <div class="main-content">
     <div class="table-section">
@@ -65,28 +69,34 @@ if (!isset($_SESSION['role'])) {
             <th>Student ID</th>
             <th>Name</th>
             <th>Problem</th>
+            <th>Admin Reply</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2023101</td>
-            <td>Fahim Rahman</td>
-            <td>Internet is not working in my hall room.</td>
-            <td><button class="edit-btn">Reply</button></td>
-          </tr>
-          <tr>
-            <td>2023102</td>
-            <td>Saif Hossain</td>
-            <td>Water supply is unavailable on the 3rd floor.</td>
-            <td><button class="edit-btn">Reply</button></td>
-          </tr>
-          <tr>
-            <td>2023103</td>
-            <td>Tanvir Ahmed</td>
-            <td>My room door lock is broken.</td>
-            <td><button class="edit-btn">Reply</button></td>
-          </tr>
+          <?php
+          $sql = "SELECT problems.id, students.reg_id, students.name, problems.description, problems.admin_reply
+                  FROM problems
+                  JOIN students ON problems.student_id = students.id
+                  ORDER BY problems.created_at DESC";
+
+          $result = mysqli_query($conn, $sql);
+
+          if (mysqli_num_rows($result) > 0) {
+              while ($row = mysqli_fetch_assoc($result)) {
+                  echo "<tr>";
+                  echo "<td>" . htmlspecialchars($row['reg_id']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['description']) . "</td>";
+                  echo "<td>" . (!empty($row['admin_reply']) ? htmlspecialchars($row['admin_reply']) : "<em>No reply yet</em>") . "</td>";
+                  $btnText = empty($row['admin_reply']) ? 'Reply' : 'Edit Reply';
+                  echo "<td><a class='edit-btn' href='bar_ad_problem_form.php?problem_id=" . urlencode($row['id']) . "'>$btnText</a></td>";
+                  echo "</tr>";
+              }
+          } else {
+              echo "<tr><td colspan='5'>No problems found.</td></tr>";
+          }
+          ?>
         </tbody>
       </table>
     </div>
