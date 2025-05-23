@@ -28,7 +28,7 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> All Room</a></li>
-          <li><a href="bar_std_room_appli_form.php"><i>🛏️</i> Room Application</a></li>
+          <li><a href="bar_std_room_appli.php"><i>🛏️</i> Room Application</a></li>
           <li><a href="bar_std_problem.php"><i>🛠️</i> Problem Assign</a></li>
       <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
           <li><a href="bar_admin.php"><i>👨‍💼</i> Admin Dashboard</a></li>
@@ -36,7 +36,7 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
           <li><a href="bar_ad_payment.php"><i>💳</i> Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> Room</a></li>
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
-          <li><a href="bar_std_room_appli.php"><i>🛠️</i>Room Application</a></li>
+          <li><a href="bar_ad_room_appli.php"><i>🛠️</i>Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
@@ -58,7 +58,9 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
 
   <!-- MAIN CONTENT -->
   <div class="main-content">
+    
     <div class="table-section">
+      <h2 style="text-align:center; margin-bottom: 20px;"><a href="bar_std_payment_form.php" class="add-button">Add Problem</a></h2>
       <h2 style="text-align: center;">My Payment History</h2>
       <table class="student-table">
         <thead>

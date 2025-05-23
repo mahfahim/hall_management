@@ -1,106 +1,89 @@
-/* Reset some basics */
+/* RESET + BASE */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Body & page layout */
-body {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f9fafb;
-  color: #333;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background-color: #2f3e46;
-  color: #d9d9d9;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  padding: 30px 20px;
-  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-  z-index: 1000;
-}
-
-/* Sidebar Logo */
-.sidebar .logo {
-  font-size: 28px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 40px;
-  text-align: center;
-  letter-spacing: 2px;
-}
-
-/* Navigation Links */
-.sidebar .nav-links {
-  list-style: none;
-  flex-grow: 1;
-}
-
-.sidebar .nav-links li {
-  margin-bottom: 20px;
-}
-
-.sidebar .nav-links a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #d9d9d9;
-  font-size: 16px;
-  padding: 10px 15px;
-  border-radius: 6px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.sidebar .nav-links a i {
-  margin-right: 12px;
-  font-style: normal; /* keep emoji normal style */
-  font-size: 18px;
-}
-
-/* Hover effect */
-.sidebar .nav-links a:hover,
-.sidebar .nav-links a:focus {
-  background-color: #52796f;
-  color: #e0e0e0;
-  outline: none;
-}
-
-/* User Profile at bottom */
-.sidebar .user-profile {
-  margin-top: 40px;
-  border-top: 1px solid #445657;
-  padding-top: 25px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 18px;
-  color: #fff;
-}
-
-/* User icon */
-.sidebar .user-profile span:first-child {
-  font-size: 40px;
-}
-
-/* Main Content */
-.main-content {
-  margin-left: 250px; /* same as sidebar width */
-  padding: 40px 50px;
-  flex-grow: 1;
-  background-color: #fff;
-  min-height: 100vh;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #1e293b;
+    color: #fff;
+  }
+  
+  /* SIDEBAR */
+  .sidebar {
+    width: 240px;
+    background-color: #111827;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  
+  .logo {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #4f46e5;
+    margin-bottom: 30px;
+  }
+  
+  .nav-links {
+    list-style: none;
+    padding: 0 20px;
+    flex-grow: 1;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .nav-links li {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .nav-links li:hover,
+  .nav-links .active {
+    background-color: #374151;
+  }
+  
+  .user-profile {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #0f172a;
+    border-top: 1px solid #2d3748;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    background-color: #1d1a1a;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    justify-content: center;     /* Horizontally center */
+    align-items: flex-start;     /* Align to top */
+    padding-top: 60px;           /* Space from top */
+  }
 
 /* Fixed Add Problem button */
 .fixed-button-container {
@@ -112,21 +95,21 @@ body {
 
 .add-button {
   display: inline-block;
-  background-color: #3d8361;
+  background-color: #111827;
   color: white;
   font-weight: 600;
   font-size: 16px;
   padding: 14px 24px;
   border-radius: 8px;
   text-decoration: none;
-  box-shadow: 0 6px 12px rgba(61,131,97,0.4);
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .add-button:hover,
 .add-button:focus {
-  background-color: #2f6443;
-  box-shadow: 0 8px 15px rgba(47,100,67,0.6);
+  background-color: #111827;
+  box-shadow: 0 8px 15px #111827;
   outline: none;
 }
 
@@ -139,7 +122,7 @@ body {
 .table-section h2 {
   font-size: 26px;
   margin-bottom: 25px;
-  color: #2f3e46;
+  color: #ffffff;
   font-weight: 700;
   text-align: center;
 }
@@ -157,7 +140,7 @@ body {
 
 /* Table Header */
 .student-table thead tr {
-  background-color: #52796f;
+  background-color: #111827;
   color: #f1f1f1;
   text-align: left;
 }
