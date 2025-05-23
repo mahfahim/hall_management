@@ -59,7 +59,8 @@ if (!isset($_SESSION['role'])) {
   <div class="main-content">
    
     <div class="table-section">
-      <a href="bar_ad_student_form.php" class="add-button">Add Student</a>
+       <h2><a href="bar_std_payment_form.php" class="add-button">Add Student</a></h2>
+      <h2>Student List</h2>
       <table class="student-table">
         <thead>
           <tr>
