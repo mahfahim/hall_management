@@ -12,16 +12,14 @@ if (!isset($_SESSION['role'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Payment</title>
+  <title>All Payments</title>
   <link rel="stylesheet" href="style3.css">
 </head>
 <body>
 
-   <div class="sidebar">
+  <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-      
-
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
@@ -38,9 +36,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
-
-          <!-- ✅ Add this logout option -->
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -53,11 +49,11 @@ if (!isset($_SESSION['role'])) {
     </div>
   </div>
 
-
   <!-- MAIN CONTENT -->
   <div class="main-content">
     <div class="table-section">
-      <a href="bar_ad_payment_form.php" class="add-button">Add Payment</a>
+      <h2><a href="bar_ad_payment_form.php" class="add-button">Add Payment</a></h2>
+      <h2>Payment List</h2>
       <table class="student-table">
         <thead>
           <tr>
@@ -67,17 +63,27 @@ if (!isset($_SESSION['role'])) {
             <th>Faculty</th>
             <th>Semester</th>
             <th>Session</th>
-            <th>Hall Fee</th>
-            <th>Payment Method</th>
+            <th>Amount</th>
+            <th>Method</th>
             <th>Transaction ID</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <?php
+          $limit = 5;
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          $offset = ($page - 1) * $limit;
+
+          $countQuery = "SELECT COUNT(*) AS total FROM payments";
+          $countResult = mysqli_query($conn, $countQuery);
+          $totalPayments = mysqli_fetch_assoc($countResult)['total'];
+          $totalPages = ceil($totalPayments / $limit);
+
           $sql = "SELECT payments.*, students.name, students.reg_id, students.faculty, students.semester, students.session 
                   FROM payments 
-                  LEFT JOIN students ON payments.student_id = students.id";
+                  LEFT JOIN students ON payments.student_id = students.id 
+                  LIMIT $limit OFFSET $offset";
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
@@ -90,22 +96,11 @@ if (!isset($_SESSION['role'])) {
                   echo "<td>" . htmlspecialchars($row['semester']) . "</td>";
                   echo "<td>" . htmlspecialchars($row['session']) . "</td>";
                   echo "<td>" . htmlspecialchars($row['amount']) . "</td>";
-
+                  echo "<td>" . htmlspecialchars($row['payment_method']) . "</td>";
+                  echo "<td>" . htmlspecialchars($row['transaction_id']) . "</td>";
                   echo "<td>
-                          <select name='payment_method_{$row['id']}' disabled>
-                            <option value='Bkash' " . ($row['payment_method'] === 'Bkash' ? 'selected' : '') . ">Bkash</option>
-                            <option value='Nagad' " . ($row['payment_method'] === 'Nagad' ? 'selected' : '') . ">Nagad</option>
-                            <option value='Rocket' " . ($row['payment_method'] === 'Rocket' ? 'selected' : '') . ">Rocket</option>
-                          </select>
-                        </td>";
-
-                  echo "<td><input type='text' value='" . htmlspecialchars($row['transaction_id']) . "' readonly></td>";
-
-                  echo "<td>
-                          <div style='display: flex; gap: 10px; text-decoration:none'>
-                            <a href='bar_ad_payment_form.php?edit={$row['id']}' class='edit-btn' style='text-decoration: none;'>Edit</a>
-                            <a href='bar_ad_payment_form.php?delete={$row['id']}'  style='text-decoration: none;'  class='delete-btn' onclick=\"return confirm('Are you sure?')\">Delete</a>
-                          </div>
+                          <a href='bar_ad_payment_form.php?edit={$row['id']}' class='edit-btn'>Edit</a>
+                          <a href='bar_ad_payment_form.php?delete={$row['id']}' class='delete-btn' onclick=\"return confirm('Are you sure?')\">Delete</a>
                         </td>";
                   echo "</tr>";
               }
@@ -115,6 +110,22 @@ if (!isset($_SESSION['role'])) {
           ?>
         </tbody>
       </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <?php if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+          <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+        <?php endif; ?>
+      </div>
+
     </div>
   </div>
 

@@ -176,21 +176,21 @@ body {
   margin: 0 4px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .pagination a:hover {
-  background-color: #007bff;
+  background-color: #0f172a;
   color: #fff;
-  border-color: #007bff;
+  border-color: #0f172a;
 }
 
 .pagination a.active {
-  background-color: #007bff;
+  background-color: #074085;
   color: white;
-  border-color: #007bff;
+  border-color: #074085;
   font-weight: bold;
 }
 

@@ -14,15 +14,12 @@ if (!isset($_SESSION['role'])) {
   <meta charset="UTF-8">
   <title>All Student</title>
   <link rel="stylesheet" href="style3.css">
-
 </head>
 <body>
 
-   <div class="sidebar">
+  <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-      
-
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
@@ -39,9 +36,7 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
           <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
       <?php } ?>
-
-          <!-- ✅ Add this logout option -->
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -54,12 +49,10 @@ if (!isset($_SESSION['role'])) {
     </div>
   </div>
 
-
   <!-- MAIN CONTENT -->
   <div class="main-content">
-   
     <div class="table-section">
-       <h2><a href="bar_std_payment_form.php" class="add-button">Add Student</a></h2>
+      <h2><a href="bar_std_payment_form.php" class="add-button">Add Student</a></h2>
       <h2>Student List</h2>
       <table class="student-table">
         <thead>
@@ -76,7 +69,19 @@ if (!isset($_SESSION['role'])) {
         </thead>
         <tbody>
           <?php
-          $sql = "SELECT students.*, rooms.room_number FROM students LEFT JOIN rooms ON students.room_id = rooms.id";
+          $limit = 5; // students per page
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          $offset = ($page - 1) * $limit;
+
+          $countQuery = "SELECT COUNT(*) AS total FROM students";
+          $countResult = mysqli_query($conn, $countQuery);
+          $totalStudents = mysqli_fetch_assoc($countResult)['total'];
+          $totalPages = ceil($totalStudents / $limit);
+
+          $sql = "SELECT students.*, rooms.room_number 
+                  FROM students 
+                  LEFT JOIN rooms ON students.room_id = rooms.id 
+                  LIMIT $limit OFFSET $offset";
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
@@ -101,6 +106,22 @@ if (!isset($_SESSION['role'])) {
           ?>
         </tbody>
       </table>
+
+      <!-- Pagination links -->
+      <div class="pagination">
+        <?php if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+          <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+        <?php endif; ?>
+      </div>
+
     </div>
   </div>
 
