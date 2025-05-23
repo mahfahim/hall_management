@@ -1,15 +1,21 @@
-/* style4.css */
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
   background-color: #1D1A1A;
   color: #333;
 }
 
+/* Sidebar */
 .sidebar {
   width: 220px;
-  background-color:#111827;
+  background-color: #111827;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -30,17 +36,17 @@ body {
   color: #ecf0f1;
 }
 
-.sidebar .nav-links {
+.nav-links {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
 
-.sidebar .nav-links li {
+.nav-links li {
   margin: 10px 0;
 }
 
-.sidebar .nav-links a {
+.nav-links a {
   text-decoration: none;
   color: #ecf0f1;
   padding: 10px 25px;
@@ -50,29 +56,30 @@ body {
   transition: background-color 0.3s, border-left 0.3s;
 }
 
-.sidebar .nav-links a:hover {
+.nav-links a:hover {
   background-color: #111827;
   border-left: 4px solid #111827;
 }
 
-.sidebar .user-profile {
+.user-profile {
   text-align: center;
   padding: 10px 0;
   border-top: 1px solid #111827;
 }
 
-.sidebar .user-profile span {
+.user-profile span {
   display: block;
   margin-top: 10px;
   font-weight: 600;
 }
 
-/* Main content area to the right of sidebar */
+/* Main Content */
 .main-content {
   margin-left: 220px;
   padding: 30px 40px;
   min-height: 100vh;
   background-color: #000000;
+  width: 100%;
 }
 
 /* Form Section */
@@ -142,7 +149,7 @@ body {
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg,#111827,#111827);
+  background: linear-gradient(135deg, #111827, #111827);
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -153,33 +160,71 @@ body {
   background: linear-gradient(135deg, #111827, #111827);
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 60px;
-    padding: 20px 10px;
-  }
-
-  .sidebar .logo {
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-
-  .sidebar .nav-links a {
-    padding: 10px 10px;
-    font-size: 14px;
-  }
-
-  .main-content {
-    margin-left: 60px;
-    padding: 20px 20px;
-  }
-
-  .form-section {
-    padding: 20px 25px;
-  }
+/* Alternate Form Style (optional) */
+.form-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: auto;
 }
 
+.form-container h2 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #1e293b;
+  text-align: center;
+}
 
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+input[type="number"],
+input[type="datetime-local"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  background-color: #f9fafb;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #111827;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #306e88;
+}
+
+/* Pagination */
 .pagination {
   text-align: center;
   margin-top: 20px;
@@ -209,3 +254,37 @@ body {
   font-weight: bold;
 }
 
+/* Responsive */
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+  }
+
+  .sidebar .logo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .nav-links a {
+    padding: 10px 10px;
+    font-size: 14px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 20px;
+  }
+
+  .form-section,
+  .form-container {
+    padding: 20px 25px;
+  }
+}
