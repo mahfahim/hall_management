@@ -24,6 +24,7 @@ if (isset($_GET['edit'])) {
     $editId = $_GET['edit'];
     $result = mysqli_query($conn, "SELECT * FROM students WHERE id = '$editId'");
     $editStudent = mysqli_fetch_assoc($result);
+    
 }
 
 // Save or Update
@@ -48,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 session = '$session_val',
                 room_id = " . ($room_no === 'NULL' ? 'NULL' : "'$room_no'") . "
                 WHERE id = '$edit_id'";
+
     } else {
         $sql = "INSERT INTO students (id, name, reg_id, faculty, semester, session, room_id, email)
                 VALUES ('$student_id', '$student_name', '$reg_id', '$faculty', '$semester', '$session_val', " . 

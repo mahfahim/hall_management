@@ -8,6 +8,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
+  min-height: 100vh;
   background-color: #1D1A1A;
   color: #333;
 }
@@ -65,6 +66,7 @@ body {
   text-align: center;
   padding: 10px 0;
   border-top: 1px solid #111827;
+  font-size: 16px;
 }
 
 .user-profile span {
@@ -83,101 +85,38 @@ body {
 }
 
 /* Form Section */
-.form-section {
+.form-section,
+.form-container {
   background-color: #111827;
   padding: 30px 40px;
   border-radius: 8px;
   max-width: 600px;
   margin: 0 auto;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.form-section h2 {
-  margin-bottom: 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffffff;
-  text-align: center;
-}
-
-.form-section form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-section label {
-  font-weight: 600;
-  margin-bottom: 6px;
-  margin-top: 20px;
-  color: #ffffff;
-}
-
-.form-section input[type="text"],
-.form-section textarea,
-.form-section select {
-  padding: 12px 15px;
-  font-size: 16px;
-  border: 1.8px solid #ddd;
-  border-radius: 6px;
-  background-color: #111827;
-  color: #ffffff;
-  transition: border-color 0.3s ease;
-  resize: vertical;
-  min-height: 40px;
-  font-family: inherit;
-}
-
-.form-section textarea {
-  min-height: 100px;
-}
-
-.form-section input[type="text"]:focus,
-.form-section textarea:focus,
-.form-section select:focus {
-  outline: none;
-  border-color: #ffffff;
-  background-color: #111827;
-}
-
-.form-section select {
-  cursor: pointer;
-}
-
-.form-section button {
-  margin-top: 30px;
-  padding: 14px 0;
-  font-size: 18px;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #111827, #111827);
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.form-section button:hover {
-  background: linear-gradient(135deg, #111827, #111827);
-}
-
-/* Alternate Form Style (optional) */
 .form-container {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  max-width: 600px;
-  margin: auto;
 }
 
+.form-section h2,
 .form-container h2 {
   margin-bottom: 25px;
   font-size: 24px;
-  color: #1e293b;
   text-align: center;
+  font-weight: 700;
+  color: #ffffff;
 }
 
+.form-container h2 {
+  color: #1e293b;
+}
+
+.form-section form,
 .form-group {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 20px;
 }
 
@@ -185,22 +124,39 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
+  color: #ffffff;
 }
 
+.form-container label {
+  color: #000;
+}
+
+input[type="text"],
 input[type="number"],
 input[type="datetime-local"],
 textarea,
 select {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
+  padding: 12px 15px;
   font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
   background-color: #f9fafb;
+  font-family: inherit;
+}
+
+.form-section input,
+.form-section textarea,
+.form-section select {
+  background-color: #111827;
+  color: #ffffff;
+  border: 1.8px solid #ddd;
+  font-size: 16px;
 }
 
 textarea {
   resize: vertical;
+  min-height: 100px;
 }
 
 input[type="checkbox"] {
@@ -208,19 +164,29 @@ input[type="checkbox"] {
   margin-right: 10px;
 }
 
-.submit-btn {
-  padding: 12px 20px;
-  background-color: #111827;
-  border: none;
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #ffffff;
 }
 
-.submit-btn:hover {
+.submit-btn,
+.form-section button {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #111827;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.submit-btn:hover,
+.form-section button:hover {
   background-color: #306e88;
 }
 

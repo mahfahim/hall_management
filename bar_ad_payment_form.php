@@ -34,23 +34,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transaction_id = $_POST['transaction-id'];
     $edit_id = $_POST['edit-id'] ?? null;
 
-    if ($edit_id) {
-        $sql = "UPDATE payments SET 
-                student_id = '$student_id',
-                amount = '$amount',
-                payment_method = '$payment_method',
-                transaction_id = '$transaction_id'
-                WHERE id = '$edit_id'";
+    // ✅ Validate student_id exists
+    $checkStudent = mysqli_query($conn, "SELECT id FROM students WHERE id = '$student_id'");
+    if (mysqli_num_rows($checkStudent) === 0) {
+        echo "<script>alert('Error: Student ID does not exist.');</script>";
     } else {
-        $sql = "INSERT INTO payments (student_id, amount, payment_method, transaction_id)
-                VALUES ('$student_id', '$amount', '$payment_method', '$transaction_id')";
-    }
+        if ($edit_id) {
+            $sql = "UPDATE payments SET 
+                    student_id = '$student_id',
+                    amount = '$amount',
+                    payment_method = '$payment_method',
+                    transaction_id = '$transaction_id'
+                    WHERE id = '$edit_id'";
+        } else {
+            $sql = "INSERT INTO payments (student_id, amount, payment_method, transaction_id)
+                    VALUES ('$student_id', '$amount', '$payment_method', '$transaction_id')";
+        }
 
-    if (mysqli_query($conn, $sql)) {
-        header("Location: bar_ad_payment.php");
-        exit();
-    } else {
-        echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+        if (mysqli_query($conn, $sql)) {
+            header("Location: bar_ad_payment.php");
+            exit();
+        } else {
+            echo "<script>alert('Error: " . mysqli_error($conn) . "');</script>";
+        }
     }
 }
 ?>
@@ -67,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-      
 
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
@@ -83,11 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i>Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          
       <?php } ?>
 
-          <!-- ✅ Add this logout option -->
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -100,15 +103,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </div>
 
-
   <div class="main-content">
     <div class="form-container">
       <h2>Payment Form</h2>
       <form action="" method="post">
+
         <div class="form-group">
-          <label for="student-id">Student ID</label>
-          <input type="number" id="student-id" name="student-id" required
-            value="<?= $editMode ? htmlspecialchars($editPayment['student_id']) : '' ?>">
+          <label for="student-id">Student</label>
+          <select name="student-id" id="student-id" required>
+            <option value="">Select Student</option>
+            <?php
+              $students = mysqli_query($conn, "SELECT id, name FROM students");
+              while ($student = mysqli_fetch_assoc($students)) {
+                  $selected = $editMode && $editPayment['student_id'] == $student['id'] ? 'selected' : '';
+                  echo "<option value='{$student['id']}' $selected>{$student['id']} - {$student['name']}</option>";
+              }
+            ?>
+          </select>
         </div>
 
         <div class="form-group">
@@ -141,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?= $editMode ? 'Update Payment' : 'Save Payment' ?>
           </button>
         </div>
+
       </form>
     </div>
   </div>
