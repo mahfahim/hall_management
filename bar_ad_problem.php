@@ -44,7 +44,7 @@ if (!$conn) {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i> Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
+        
       <?php } ?>
           <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
@@ -52,9 +52,7 @@ if (!$conn) {
     <div class="user-profile">
       <span style="font-size: 40px;">👤</span>
       <span>
-        <?= htmlspecialchars(
-          $_SESSION['student_name'] ?? ($_SESSION['admin_name'] ?? 'User')
-        ); ?>
+        <?= htmlspecialchars($_SESSION['student_name'] ?? ($_SESSION['admin_name'] ?? 'User')); ?>
       </span>
     </div>
   </div>
@@ -75,10 +73,20 @@ if (!$conn) {
         </thead>
         <tbody>
           <?php
+          $limit = 5;
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          $offset = ($page - 1) * $limit;
+
+          $countQuery = "SELECT COUNT(*) AS total FROM problems";
+          $countResult = mysqli_query($conn, $countQuery);
+          $totalProblems = mysqli_fetch_assoc($countResult)['total'];
+          $totalPages = ceil($totalProblems / $limit);
+
           $sql = "SELECT problems.id, students.reg_id, students.name, problems.description, problems.admin_reply
                   FROM problems
                   JOIN students ON problems.student_id = students.id
-                  ORDER BY problems.created_at DESC";
+                  ORDER BY problems.created_at DESC
+                  LIMIT $limit OFFSET $offset";
 
           $result = mysqli_query($conn, $sql);
 
@@ -99,7 +107,24 @@ if (!$conn) {
           ?>
         </tbody>
       </table>
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <?php if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+          <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+        <?php endif; ?>
+      </div>
+
     </div>
   </div>
+
 </body>
 </html>

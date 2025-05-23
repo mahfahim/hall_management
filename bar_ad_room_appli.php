@@ -20,7 +20,6 @@ if (!isset($_SESSION['role'])) {
   <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
-
       <?php if ($_SESSION['role'] === 'student') { ?>
           <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
@@ -35,9 +34,8 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i> Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
+          
       <?php } ?>
-
       <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
@@ -53,7 +51,7 @@ if (!isset($_SESSION['role'])) {
 
   <div class="main-content">
     <div class="table-section">
-        
+      <h2>Room Applications</h2>
       <table class="student-table">
         <thead>
           <tr>
@@ -70,12 +68,22 @@ if (!isset($_SESSION['role'])) {
         </thead>
         <tbody>
           <?php
+          $limit = 5;
+          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+          $offset = ($page - 1) * $limit;
+
+          $countQuery = "SELECT COUNT(*) AS total FROM room_applications";
+          $countResult = mysqli_query($conn, $countQuery);
+          $totalApplications = mysqli_fetch_assoc($countResult)['total'];
+          $totalPages = ceil($totalApplications / $limit);
+
           $sql = "SELECT ra.*, s.name AS student_name, r.room_number, a.full_name AS admin_name 
                   FROM room_applications ra 
                   JOIN students s ON ra.student_id = s.id 
                   LEFT JOIN rooms r ON ra.room_id = r.id 
                   LEFT JOIN admins a ON ra.processed_by = a.id 
-                  ORDER BY ra.created_at DESC";
+                  ORDER BY ra.created_at DESC 
+                  LIMIT $limit OFFSET $offset";
           $result = mysqli_query($conn, $sql);
 
           if (mysqli_num_rows($result) > 0) {
@@ -100,6 +108,22 @@ if (!isset($_SESSION['role'])) {
           ?>
         </tbody>
       </table>
+
+      <!-- Pagination Links -->
+      <div class="pagination">
+        <?php if ($page > 1): ?>
+          <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+        <?php endif; ?>
+
+        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+          <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+        <?php endfor; ?>
+
+        <?php if ($page < $totalPages): ?>
+          <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+        <?php endif; ?>
+      </div>
+
     </div>
   </div>
 

@@ -55,7 +55,7 @@ $paid_students = mysqli_fetch_assoc($payments_result)['paid_students'];
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i>Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          <li><a href="bar_ad_settings.php"><i>⚙️</i> Settings</a></li>
+          
       <?php } ?>
 
           <!-- ✅ Add this logout option -->
