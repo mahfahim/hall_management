@@ -41,7 +41,7 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
       
       <?php } ?>
 
-          <!-- ✅ Add this logout option -->
+          
           <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 

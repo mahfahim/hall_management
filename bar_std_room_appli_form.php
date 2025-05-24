@@ -9,7 +9,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
 
 $student_id = $_SESSION['student_id'];
 
-// Handle delete request
+// delete
 if (isset($_GET['delete'])) {
     $idToDelete = $_GET['delete'];
     $check = mysqli_query($conn, "SELECT * FROM room_applications WHERE id = '$idToDelete' AND student_id = '$student_id'");
