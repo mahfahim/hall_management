@@ -9,52 +9,77 @@
 </head>
 <body>
    
-    <header class="navbar" >
-        <div class="container">
-            <div class="logo">BIJOY 24 HALL</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="administration.php">Administration</a></li>
-                    <li><a href="#">Notice</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="log_button.php">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <hr>
-    <h1 class="notice-title">Notice Board</h1>
+<header class="navbar">
+  <div class="container">
+    <div class="logo">BIJOY 24 HALL</div>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="administration.php">Administration</a></li>
+        <li><a href="#">Notice</a></li>
+        <li><a href="contact.php">Contact</a></li>
+        <li><a href="log_button.php">Login</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <div class="notice-section" id="Notice">
-        <table class="notice-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $sql = "SELECT title, content, publish_date FROM notices WHERE is_published = 1 ORDER BY publish_date DESC";
-                $result = mysqli_query($conn, $sql);
+<hr>
+<h1 class="notice-title">Notice Board</h1>
 
-                if ($result && mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars(date("Y-m-d", strtotime($row['publish_date']))) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['title']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['content']) . "</td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='3'>No notices available.</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
-    </div>
+<div class="notice-section" id="Notice">
+  <table class="notice-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Title</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+
+    <?php
+    $limit = 3;
+    $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
+    $offset = ($page - 1) * $limit;
+
+    // Total notices count
+    $count_sql = "SELECT COUNT(*) AS total FROM notices WHERE is_published = 1";
+    $count_result = mysqli_query($conn, $count_sql);
+    $total_notices = mysqli_fetch_assoc($count_result)['total'];
+    $total_pages = ceil($total_notices / $limit);
+
+    // Fetch paginated notices
+    $sql = "SELECT title, content, publish_date FROM notices WHERE is_published = 1 ORDER BY publish_date DESC LIMIT $limit OFFSET $offset";
+    $result = mysqli_query($conn, $sql);
+    ?>
+
+    <tbody>
+      <?php
+      if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+          echo "<tr>";
+          echo "<td>" . htmlspecialchars(date("Y-m-d", strtotime($row['publish_date']))) . "</td>";
+          echo "<td>" . htmlspecialchars($row['title']) . "</td>";
+          echo "<td>" . htmlspecialchars($row['content']) . "</td>";
+          echo "</tr>";
+        }
+      } else {
+        echo "<tr><td colspan='3'>No notices available.</td></tr>";
+      }
+      ?>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagination Links -->
+<div class="pagination">
+  <?php
+  for ($i = 1; $i <= $total_pages; $i++) {
+    $active = ($i == $page) ? "active" : "";
+    echo "<a class='$active' href='?page=$i'>$i</a>";
+  }
+  ?>
+</div>
 
 </body>
 </html>

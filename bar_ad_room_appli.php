@@ -2,8 +2,26 @@
 include 'db_connect.php';
 session_start();
 
-if (!isset($_SESSION['role'])) {
+$valid_roles = ['student', 'super_admin'];
+if (!isset($_SESSION['role']) || !in_array($_SESSION['role'], $valid_roles)) {
     header("Location: account_student.php");
+    exit();
+}
+
+$currentPage = basename($_SERVER['PHP_SELF']);
+$page = isset($_GET['page']) && (int)$_GET['page'] > 0 ? (int)$_GET['page'] : 1;
+$limit = 5;
+$offset = ($page - 1) * $limit;
+
+// Count total applications
+$countQuery = "SELECT COUNT(*) AS total FROM room_applications";
+$countResult = mysqli_query($conn, $countQuery);
+$totalApplications = mysqli_fetch_assoc($countResult)['total'];
+$totalPages = ceil($totalApplications / $limit);
+
+// Redirect if page exceeds total pages
+if ($page > $totalPages && $totalPages > 0) {
+    header("Location: ?page=$totalPages");
     exit();
 }
 ?>
@@ -17,7 +35,7 @@ if (!isset($_SESSION['role'])) {
 </head>
 <body>
 
-  <div class="sidebar">
+   <div class="sidebar">
     <h2 class="logo">BIJOY 24 HALL</h2>
     <ul class="nav-links">
       <?php if ($_SESSION['role'] === 'student') { ?>
@@ -34,17 +52,15 @@ if (!isset($_SESSION['role'])) {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i> Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          
+        
       <?php } ?>
-      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
       <span style="font-size: 40px;">👤</span>
       <span>
-        <?= htmlspecialchars(
-          isset($_SESSION['student_name']) ? $_SESSION['student_name'] : (isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : 'User')
-        ); ?>
+        <?= htmlspecialchars($_SESSION['student_name'] ?? ($_SESSION['admin_name'] ?? 'User')); ?>
       </span>
     </div>
   </div>
@@ -52,6 +68,12 @@ if (!isset($_SESSION['role'])) {
   <div class="main-content">
     <div class="table-section">
       <h2>Room Applications</h2>
+
+      <!-- Optional Success Message -->
+      <?php if (isset($_GET['success'])): ?>
+        <div class="success-message"><?= htmlspecialchars($_GET['success']) ?></div>
+      <?php endif; ?>
+
       <table class="student-table">
         <thead>
           <tr>
@@ -68,15 +90,6 @@ if (!isset($_SESSION['role'])) {
         </thead>
         <tbody>
           <?php
-          $limit = 5;
-          $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-          $offset = ($page - 1) * $limit;
-
-          $countQuery = "SELECT COUNT(*) AS total FROM room_applications";
-          $countResult = mysqli_query($conn, $countQuery);
-          $totalApplications = mysqli_fetch_assoc($countResult)['total'];
-          $totalPages = ceil($totalApplications / $limit);
-
           $sql = "SELECT ra.*, s.name AS student_name, r.room_number, a.full_name AS admin_name 
                   FROM room_applications ra 
                   JOIN students s ON ra.student_id = s.id 
@@ -98,7 +111,7 @@ if (!isset($_SESSION['role'])) {
                   echo "<td>" . htmlspecialchars($row['room_number'] ?? 'N/A') . "</td>";
                   echo "<td>" . htmlspecialchars($row['admin_name'] ?? 'Pending') . "</td>";
                   echo "<td>
-                          <a href='room_application_process.php?id={$row['id']}' class='edit-btn'>Process</a>
+                          <a href='bar_ad_room_appli_form.php?id={$row['id']}' class='edit-btn'>Process</a>
                         </td>";
                   echo "</tr>";
               }
