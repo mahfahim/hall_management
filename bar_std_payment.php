@@ -25,7 +25,7 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
       
 
       <?php if ($_SESSION['role'] === 'student') { ?>
-          <li><a href="#"><i>🎓</i> Student Dashboard</a></li>
+          <li><a href="bar_student.php"><i>🎓</i> Student Dashboard</a></li>
           <li><a href="bar_std_payment.php"><i>💳</i> My Payment</a></li>
           <li><a href="bar_ad_room.php"><i>🛏️</i> All Room</a></li>
           <li><a href="bar_std_room_appli.php"><i>🛏️</i> Room Application</a></li>
