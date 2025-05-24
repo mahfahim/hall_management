@@ -87,7 +87,7 @@ body {
 /* Form Section */
 .form-section,
 .form-container {
-  background-color: #111827;
+  background-color:#F9FAFB;
   padding: 30px 40px;
   border-radius: 8px;
   max-width: 600px;
@@ -148,8 +148,8 @@ select {
 .form-section input,
 .form-section textarea,
 .form-section select {
-  background-color: #111827;
-  color: #ffffff;
+  background-color:#F9FAFB;
+  color: #000000;
   border: 1.8px solid #ddd;
   font-size: 16px;
 }

@@ -89,8 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <label for="description">Problem Description</label>
                 <textarea name="description" id="description" rows="5" 
-                    style="width: 100%; padding: 8px 10px; border-radius: 4px;
-                    border: none; background-color: #374151; color: white;" required></textarea>
+                    required></textarea>
             </div>
 
             <div class="form-group">
