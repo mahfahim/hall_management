@@ -5,31 +5,34 @@
 }
 
 body {
+  display: flex;
+  margin: 0;
   font-family: Arial, sans-serif;
   display: flex;
   height: 100vh;
-  background-color: #1e293b; /* dark blue-gray */
+  background-color: #1D1A1A; /* dark blue-gray    #1E293B*/
   color: #fff;
 }
-
 /* SIDEBAR */
 .sidebar {
-  width: 240px;
+  width: 250px;
+  height: 100vh;
   background-color: #111827;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px 0;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 1000;
 }
+
 
 .logo {
   text-align: center;
   font-size: 22px;
   font-weight: bold;
-  color: #4f46e5;
+  color: #ffffff;
+  margin-top: 20px;
   margin-bottom: 30px;
 }
 
@@ -71,11 +74,12 @@ body {
 }
 /* Main Content */
 .main-content {
-  margin-left: 220px;
-  padding: 30px 40px;
+  margin-left: 300px; /* Offset for sidebar */
+  padding: 30px;
   min-height: 100vh;
   background-color: #1D1A1A;
-  width: 100%;
+  flex: 1;
+  
 }
 
 /* Form Section */
@@ -127,6 +131,7 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="email"],
 input[type="datetime-local"],
 textarea,
 select {
@@ -178,8 +183,12 @@ select:focus {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 50%;
-  
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
+
 
 .submit-btn:hover,
 .form-section button:hover {

@@ -130,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
         <div class="form-group">
-          <button type="submit"><?= $editMode ? 'Update Notice' : 'Create Notice' ?></button>
+          <button type="submit" class="submit-btn"><?= $editMode ? 'Update Notice' : 'Create Notice' ?></button>
         </div>
       </form>
     </div>
