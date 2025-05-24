@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Redirect if not logged in or unauthorized
+
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'super_admin')) {
     header("Location: login.php");
     exit();
@@ -76,7 +76,7 @@ $problem_reply = $row['admin_reply'] ?? '';
           
       <?php } ?>
 
-          <!-- ✅ Add this logout option -->
+        
           <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
@@ -116,7 +116,7 @@ $problem_reply = $row['admin_reply'] ?? '';
       <div class="form-group">
         <label for="reply">Your Reply</label>
         <textarea id="reply" name="reply_message" rows="5" required
-          style="width: 100%; padding: 8px; border-radius: 5px; background-color: #374151; color: white; border: none;"><?= htmlspecialchars($problem_reply) ?></textarea>
+          style="width: 100%; padding: 8px; border-radius: 5px; background-color: #F9FAFB; color: black; border:1px solid #cbd5e1;"><?= htmlspecialchars($problem_reply) ?></textarea>
       </div>
 
       <div class="form-group full-width">
