@@ -9,7 +9,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'student') {
 
 $student_id = $_SESSION['student_id'];
 
-// delete
+// Delete Room Application
 if (isset($_GET['delete'])) {
     $idToDelete = $_GET['delete'];
     $check = mysqli_query($conn, "SELECT * FROM room_applications WHERE id = '$idToDelete' AND student_id = '$student_id'");
@@ -23,6 +23,7 @@ if (isset($_GET['delete'])) {
 $editMode = false;
 $editApplication = [];
 
+// Edit Room Application
 if (isset($_GET['edit'])) {
     $editMode = true;
     $editId = $_GET['edit'];
@@ -36,10 +37,12 @@ if (isset($_GET['edit'])) {
     }
 }
 
+// Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $preferred_block = $_POST['preferred-block'];
-    $preferred_room_type = $_POST['preferred-room-type'];
-    $reason = $_POST['reason'];
+    // Sanitize inputs
+    $preferred_block = mysqli_real_escape_string($conn, $_POST['preferred-block']);
+    $preferred_room_type = mysqli_real_escape_string($conn, $_POST['preferred-room-type']);
+    $reason = mysqli_real_escape_string($conn, $_POST['reason']);
     $status = 'pending';
     $edit_id = $_POST['edit-id'] ?? null;
 
