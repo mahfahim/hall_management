@@ -1,43 +1,57 @@
 <?php
 session_start();
-include 'db_connect.php'; // Make sure this file connects to your database and sets $conn
+include 'db_connect.php';
 
-// Redirect to login if role is not set
 if (!isset($_SESSION['role'])) {
     header("Location: login.php");
     exit();
 }
 
 $role = $_SESSION['role'];
+$limit = 5; // records per page
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($page - 1) * $limit;
 
-// Prepare SQL query based on user role
+// Count total rows for pagination
+if ($role === 'super_admin') {
+    $countQuery = "SELECT COUNT(*) AS total FROM problems";
+} elseif ($role === 'student') {
+    $student_id = $_SESSION['student_id'];
+    $countQuery = "SELECT COUNT(*) AS total FROM problems WHERE student_id = $student_id";
+}
+$countResult = mysqli_query($conn, $countQuery);
+$totalProblems = mysqli_fetch_assoc($countResult)['total'];
+$totalPages = ceil($totalProblems / $limit);
+
+// Get paginated results
 if ($role === 'super_admin') {
     $sql = "SELECT problems.*, students.name AS student_name 
             FROM problems 
             JOIN students ON problems.student_id = students.id 
-            ORDER BY problems.created_at DESC";
+            ORDER BY problems.created_at DESC 
+            LIMIT $limit OFFSET $offset";
     $result = mysqli_query($conn, $sql);
 } elseif ($role === 'student') {
-    $student_id = $_SESSION['student_id'];
     $stmt = mysqli_prepare($conn, "SELECT problems.*, students.name AS student_name 
                                    FROM problems 
                                    JOIN students ON problems.student_id = students.id 
                                    WHERE problems.student_id = ? 
-                                   ORDER BY problems.created_at DESC");
+                                   ORDER BY problems.created_at DESC 
+                                   LIMIT $limit OFFSET $offset");
     mysqli_stmt_bind_param($stmt, "i", $student_id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 } else {
-    // If role is neither super_admin nor student, deny access or redirect
     echo "Access denied.";
     exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Problem List</title>
-    <link rel="stylesheet" href="style3.css"> <!-- Your CSS file -->
+    <link rel="stylesheet" href="style3.css">
 </head>
 <body>
 
@@ -58,9 +72,8 @@ if ($role === 'super_admin') {
           <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
           <li><a href="bar_ad_room_appli.php"><i>🛠️</i> Room Application</a></li>
           <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-          
       <?php } ?>
-          <li><a href="logout.php"><i>🚪</i> Logout</a></li>
+      <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 
     <div class="user-profile">
@@ -74,9 +87,11 @@ if ($role === 'super_admin') {
 </div>
 
 <div class="main-content">
-   
     <div class="table-section">
-        <h2 style="text-align:center; margin-bottom: 20px;"><a href="bar_std_problem_form.php" class="add-button">Add Problem</a></h2>
+        <?php if ($role === 'student'): ?>
+            <h2 style="text-align:center;"><a href="bar_std_problem_form.php" class="add-button">Add Problem</a></h2>
+        <?php endif; ?>
+        
         <h2 style="text-align:center; margin-bottom: 20px;">Reported Problems</h2>
 
         <table class="student-table">
@@ -115,6 +130,21 @@ if ($role === 'super_admin') {
                 <?php endif; ?>
             </tbody>
         </table>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <a href="?page=<?= $i ?>" class="<?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?page=<?= $page + 1 ?>">Next &raquo;</a>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 
