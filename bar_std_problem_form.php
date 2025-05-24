@@ -1,4 +1,9 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Start session
 session_start();
 
@@ -23,16 +28,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO problems (student_id, title, description, category)
             VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "isss", $student_id, $title, $description, $category);
 
-    if (mysqli_stmt_execute($stmt)) {
-        echo "<script>alert('Problem submitted successfully!');</script>";
-        header("Location : bar_std_problem.php");
-        
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "isss", $student_id, $title, $description, $category);
+
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>alert('Problem submitted successfully!');</script>";
+            header("Location: bar_std_problem.php");
+            exit();
+        } else {
+            echo "<script>alert('Error: Could not submit.');</script>";
+        }
+
+        mysqli_stmt_close($stmt);
     } else {
-        echo "<script>alert('Error: Could not submit.');</script>";
+        echo "<script>alert('Error: Failed to prepare the SQL statement.');</script>";
     }
-    mysqli_stmt_close($stmt);
+
     mysqli_close($conn);
 }
 ?>
@@ -62,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="bar_ad_problem.php"><i>🛠️</i> Problem</a></li>
             <li><a href="bar_ad_room_appli.php"><i>🛠️</i> Room Application</a></li>
             <li><a href="bar_ad_notice.php"><i>📢</i> Notice Manage</a></li>
-            
         <?php } ?>
         <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
@@ -88,8 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-group">
                 <label for="description">Problem Description</label>
-                <textarea name="description" id="description" rows="5" 
-                    required></textarea>
+                <textarea name="description" id="description" rows="5" required></textarea>
             </div>
 
             <div class="form-group">
