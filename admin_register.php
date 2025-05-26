@@ -25,7 +25,7 @@
     <div class="register-wrapper">
         <div class="register-container">
             <h2>🔑 Admin Registration</h2>
-            <form action="handle_admin_register.php" method="post">
+            <form action="admin_register_back.php" method="post">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="admin_username" required>
 

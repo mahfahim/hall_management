@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = htmlspecialchars(trim($_POST['admin_username']));
     $password = trim($_POST['admin_password']);
 
-    // Prepare the SQL statement
+    
     $sql = "SELECT * FROM admins WHERE username = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "s", $username);

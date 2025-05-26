@@ -23,7 +23,7 @@
         </div>
     </header>
     <hr>
-    <!-- Administration Section -->
+    
     <section id="Administration" class="administration-section">
         <h1>Administration</h1>
         <div class="row">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Add more admin cards here -->
+            
         </div>
     </section>
 

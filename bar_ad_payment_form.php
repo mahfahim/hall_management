@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $transaction_id = $_POST['transaction-id'];
     $edit_id = $_POST['edit-id'] ?? null;
 
-    // ✅ Validate student_id exists
+    //  Validate kora student_id ache kina
     $checkStudent = mysqli_query($conn, "SELECT id FROM students WHERE id = '$student_id'");
     if (mysqli_num_rows($checkStudent) === 0) {
         echo "<script>alert('Error: Student ID does not exist.');</script>";

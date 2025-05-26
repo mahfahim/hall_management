@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-// Prevent access if not logged in
+
 if (!isset($_SESSION['role'])) {
-    header("Location: .php"); // Redirect to login page
+    header("Location: .php"); 
     exit();
 }
 ?>
@@ -39,7 +39,7 @@ if (!isset($_SESSION['role'])) {
           
       <?php } ?>
 
-          <!-- ✅ Add this logout option -->
+         
           <li><a href="logout.php"><i>🚪</i> Logout</a></li>
     </ul>
 

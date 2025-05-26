@@ -49,7 +49,7 @@ if (!isset($_SESSION['role'])) {
     </div>
   </div>
 
-  <!-- MAIN CONTENT -->
+  
   <div class="main-content">
     <div class="table-section">
       <h2><a href="bar_ad_payment_form.php" class="add-button">Add Payment</a></h2>
@@ -111,7 +111,7 @@ if (!isset($_SESSION['role'])) {
         </tbody>
       </table>
 
-      <!-- Pagination -->
+     
       <div class="pagination">
         <?php if ($page > 1): ?>
           <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>

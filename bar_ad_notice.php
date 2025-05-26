@@ -7,12 +7,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'super_admin') {
     exit();
 }
 
-// Pagination logic
+
 $limit = 5;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 
-// Total notice count
+
 $totalResult = mysqli_query($conn, "SELECT COUNT(*) AS total FROM notices");
 $totalRow = mysqli_fetch_assoc($totalResult);
 $totalPages = ceil($totalRow['total'] / $limit);
@@ -27,7 +27,7 @@ $totalPages = ceil($totalRow['total'] / $limit);
 </head>
 <body>
 
-<!-- Sidebar -->
+
 <div class="sidebar">
   <h2 class="logo">BIJOY 24 HALL</h2>
   <ul class="nav-links">
@@ -58,7 +58,7 @@ $totalPages = ceil($totalRow['total'] / $limit);
   </div>
 </div>
 
-<!-- Main Content -->
+
 <div class="main-content">
   <div class="table-section">
     <h2><a href="bar_ad_notice_form.php" class="add-button">➕ Add Notice</a></h2>
@@ -106,7 +106,7 @@ $totalPages = ceil($totalRow['total'] / $limit);
       </tbody>
     </table>
 
-    <!-- Pagination -->
+    
     <div class="pagination">
       <?php if ($page > 1): ?>
         <a href="?page=<?= $page - 1 ?>">&laquo; Prev</a>
