@@ -48,6 +48,9 @@ $problem_reply = $row['admin_reply'] ?? '';
 <head>
   <meta charset="UTF-8" />
   <title>Reply to Student Problem</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style4.css" />
 
   <!-- sidebar style -->

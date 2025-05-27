@@ -31,6 +31,9 @@ if ($page > $totalPages && $totalPages > 0) {
 <head>
   <meta charset="UTF-8">
   <title>Room Applications</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style3.css">
 
     <!-- sidebar style -->

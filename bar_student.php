@@ -61,6 +61,9 @@ $stmt->close();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Student Dashboard</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style6.css" />
 
   <!-- sidebar style -->

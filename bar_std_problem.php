@@ -51,6 +51,9 @@ if ($role === 'super_admin') {
 <html>
 <head>
     <title>Problem List</title>
+          <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
     <link rel="stylesheet" href="style3.css">
       <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />

@@ -53,6 +53,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Student Payment Form</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style4.css">
 
     <!-- sidebar style -->
@@ -64,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- sidebar -->
    <?php include 'z_side.php'; ?>
 
-   
+
 <div class="main-content">
     <div class="form-section">
       <h2>Payment Form</h2>

@@ -13,6 +13,9 @@ if (!isset($_SESSION['role'])) {
 <head>
   <meta charset="UTF-8">
   <title>All Payments</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style3.css">
 
     <!-- sidebar style -->

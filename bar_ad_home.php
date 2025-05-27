@@ -14,6 +14,9 @@ if (!isset($_SESSION['role'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NexusFlow Sidebar</title>
+      <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style5.css" />
 
     <!-- sidebar style -->

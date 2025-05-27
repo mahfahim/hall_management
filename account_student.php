@@ -12,6 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
+
+        <!-- reset  -->
+    <link rel="stylesheet" href="z_reset.css">
+    
     <link rel="stylesheet" href="style2.css">
 
     <!-- Navbar styles -->

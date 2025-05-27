@@ -15,6 +15,9 @@ $student_id = $_SESSION['student_id'] ?? null;
 <head>
   <meta charset="UTF-8">
   <title>Room Applications</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style3.css">
   
   <!-- sidebar style -->

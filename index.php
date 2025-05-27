@@ -5,7 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bijoy-24 Hall</title>
+
+          <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="index1_welcome.css">
+
+    <link rel="stylesheet" href="index2_why.css">
+
+    <link rel="stylesheet" href="index3_facility.css">
+
 
     <!-- Navbar styles -->
     <link rel="stylesheet" href="z_nav.css">
@@ -19,17 +31,18 @@
     <!-- navber -->
     <?php include 'z_nav.php'; ?>
 
-
-    <section class="hero-section">
-        <div class="hero-content">
+    <!-- index1_welcome.css -->
+    <section class="i1-hero-section">
+        <div class="i1-hero-content">
             <h1>Welcome to Bijoy 24 Hall</h1>
             <p>Patuakhali Science and Technology University</p>
         </div>
     </section>
 
-     <section class="choose-section">
+    <!-- index2_why.css -->
+<section class="i2-choose-section">
 
-<div class="text-content">
+<div class="i2-text-content">
   <h2>WHY CHOOSE <br>BIJOY 24 HALL?</h2>
   <p>
     Choosing Bijoy 24 Hall means choosing a comfortable and supportive residential environment 
@@ -40,24 +53,24 @@
     With well-maintained facilities, dedicated hall administration, and a strong sense of community, 
     Bijoy 24 Hall provides an ideal place for students to live, learn, and thrive during their university life.
   </p>
-  <a href="#" class="read-more">READ MORE</a>
+  <a href="#" class="i2-read-more">READ MORE</a>
 </div>
 
 
-  <div class="image-content">
-    <div class="carousel">
-      <img src="pic/gate_dron.jpg" alt="Hall 1" class="carousel-image active">
-      <img src="pic/fest5.jpg" alt="Hall 2" class="carousel-image">
-      <img src="pic/ifter4.jpg" alt="Hall 3" class="carousel-image">
-      <button class="prev" onclick="prevSlide()">❮</button>
-      <button class="next" onclick="nextSlide()">❯</button>
-      <div class="caption">BIJOY-24 HALL</div>
+  <div class="i2-image-content">
+    <div class="i2-carousel">
+      <img src="pic/gate_dron.jpg" alt="Hall 1" class="i2-carousel-image active">
+      <img src="pic/fest5.jpg" alt="Hall 2" class="i2-carousel-image">
+      <img src="pic/ifter4.jpg" alt="Hall 3" class="i2-carousel-image">
+      <button class="i2-prev" onclick="prevSlide()">❮</button>
+      <button class="i2-next" onclick="nextSlide()">❯</button>
+      <div class="i2-caption">BIJOY-24 HALL</div>
     </div>
   </div>
 </section>
 
-
-  <div class="container">
+<!-- index3_facility.css -->
+  <div class="i3-container">
     <h1>Our Facilities</h1>
     <p class="subtitle">Our top-notch facilities ensure a conducive environment for student success.</p>
     <div class="grid">
@@ -132,7 +145,8 @@
     <?php include 'z_foot.php'; ?>
 
     <!-- Link to external JavaScript -->
-    <script src="script.js"></script>
+    <script src="index2_why.js"></script>
+    <script src="z_nav.js"></script>
 
 </body>
 </html>

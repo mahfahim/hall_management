@@ -23,6 +23,9 @@ if (!$conn) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Student Problems - Admin Dashboard</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style3.css" />
 
     <!-- sidebar style -->

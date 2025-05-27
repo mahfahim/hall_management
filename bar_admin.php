@@ -32,6 +32,9 @@ $paid_students = mysqli_fetch_assoc($payments_result)['paid_students'];
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sidebar</title>
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style6.css" />
 
     <!-- sidebar style -->

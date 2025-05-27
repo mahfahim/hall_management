@@ -1,95 +1,64 @@
-     /* Inserted style8.css content */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            display: flex;
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            background-color: #1D1A1A;
-            color: #fff;
-        }
 
-        
-        .main-content {
-            margin-left: 300px;
-            padding: 30px;
-            min-height: 100vh;
-            background-color: #1D1A1A;
-            flex: 1;
-        }
-        .form-section {
-            background-color: #ffffff;
-            padding: 40px 50px;
-            border-radius: 15px;
-            width: 550px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin: 0 auto;
-        }
-        .form-section h2 {
-            color: #000000;
-            font-size: 28px;
-            font-weight: 900;
-            margin-bottom: 30px;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        .form-section form {
-            display: flex;
-            flex-direction: column;
-        }
-        .form-section label {
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 8px;
-            margin-top: 25px;
-        }
-        .form-section select {
-            padding: 14px 20px;
-            border-radius: 10px;
-            border: 2px solid #000000;
-            background-color: #F9FAFB;
-            color: #000000;
-            font-size: 16px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-section select:focus {
-            outline: none;
-            border-color: #000000;
-            box-shadow: 0 0 8px #000000;
-        }
-        .form-section button {
-            margin-top: 35px;
-            background-color: #161626;
-            color: #ffffff;
-            font-weight: 900;
-            font-size: 20px;
-            padding: 16px 0;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .form-section button:hover {
-            background-color: #2e5160;
-        }
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 60px;
-                padding: 20px 8px;
-            }
-            .sidebar .logo {
-                font-size: 18px;
-                margin-bottom: 15px;
-            }
-            .sidebar .nav-links a {
-                padding: 10px 12px;
-                font-size: 14px;
-            }
-            .main-content {
-                margin-left: 60px;
-                padding: 20px;
-            }
-        }
+
+.main-content {
+    margin-left: 300px;
+    padding: 30px;
+    min-height: 100vh;
+    background-color: #1D1A1A;
+    flex: 1;
+}
+.form-section {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 15px;
+    width: 550px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+}
+.form-section h2 {
+    color: #000000;
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+.form-section label {
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    margin-top: 25px;
+}
+.form-section select {
+    padding: 14px 20px;
+    border-radius: 10px;
+    border: 2px solid #000000;
+    background-color: #F9FAFB;
+    color: #000000;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-section select:focus {
+    outline: none;
+    border-color: #000000;
+    box-shadow: 0 0 8px #000000;
+}
+.form-section button {
+    margin-top: 35px;
+    background-color: #161626;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 20px;
+    padding: 16px 0;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.form-section button:hover {
+    background-color: #2e5160;
+}

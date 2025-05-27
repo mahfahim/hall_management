@@ -58,6 +58,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Process Room Application</title>
+          <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
      <link rel="stylesheet" href="style9.css">
     
 

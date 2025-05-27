@@ -1,0 +1,66 @@
+
+    .i3-container {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 40px;
+      margin-bottom: 5px;
+    }
+
+    p.subtitle {
+      color: #777;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: left;
+    }
+
+    .facility {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      border: 1px solid #eee;
+    }
+
+    .facility:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .facility img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .facility-title {
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+   
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }

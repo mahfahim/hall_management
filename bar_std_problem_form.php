@@ -53,8 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Report a Problem</title>
-    <link rel="stylesheet" href="style4.css">
+          <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
     
+    <link rel="stylesheet" href="style4.css">
+
   <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
 

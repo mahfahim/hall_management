@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Student Registration</title>
+          <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>

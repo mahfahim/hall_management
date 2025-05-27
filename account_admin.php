@@ -11,7 +11,12 @@ if (isset($_SESSION['login_error'])) {
 <head>
     <meta charset="UTF-8">
     <title>Admin Login</title>
+
+        <!-- reset  -->
+    <link rel="stylesheet" href="z_reset.css">
+
     <link rel="stylesheet" href="style2.css">
+
     <!-- navber -->
      <link rel="stylesheet" href="z_nav.css"> 
 </head>

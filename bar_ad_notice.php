@@ -23,6 +23,10 @@ $totalPages = ceil($totalRow['total'] / $limit);
 <head>
   <meta charset="UTF-8">
   <title>Manage Notices</title>
+
+        <!-- reset  -->
+  <link rel="stylesheet" href="z_reset.css">
+    
   <link rel="stylesheet" href="style3.css">
 
     <!-- sidebar style -->
