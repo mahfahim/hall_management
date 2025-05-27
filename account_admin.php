@@ -12,22 +12,13 @@ if (isset($_SESSION['login_error'])) {
     <meta charset="UTF-8">
     <title>Admin Login</title>
     <link rel="stylesheet" href="style2.css">
+    <!-- navber -->
+     <link rel="stylesheet" href="z_nav.css"> 
 </head>
 <body>
-<header class="navbar" >
-        <div class="container">
-            <div class="logo">BIJOY 24 HALL</div>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="administration.php">Administration</a></li>
-                    <li><a href="notice.php">Notice</a></li>
-                    <li><a href="contact.php">Contact</a></li>
-                    <li><a href="log_button.php">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- navber -->
+    <?php include 'z_nav.php'; ?>
+
     <hr>
     <div class="login-boxes">
         <div class="login-box">
