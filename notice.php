@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="style.css" />
   <!-- Navbar styles -->
     <link rel="stylesheet" href="z_nav.css">
+
+  <!-- footer styles -->
+    <link rel="stylesheet" href="z_foot.css">
+
+  <!-- pagination styles -->
+    <link rel="stylesheet" href="z_page.css">
+
+
 </head>
 <body>
    
@@ -71,6 +79,9 @@
   }
   ?>
 </div>
+
+    <!-- footer -->
+    <?php include 'z_foot.php'; ?>
 
 </body>
 </html>

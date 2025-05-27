@@ -20,13 +20,16 @@ $student_id = $_SESSION['student_id'] ?? null;
   <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
 
+   <!-- pagination styles -->
+    <link rel="stylesheet" href="z_page.css">
+
 </head>
 <body>
 
  <!-- sidebar -->
    <?php include 'z_side.php'; ?>
 
-   
+
 
   <!-- MAIN CONTENT -->
   <div class="main-content">

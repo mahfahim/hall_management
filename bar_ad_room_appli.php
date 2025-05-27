@@ -36,6 +36,9 @@ if ($page > $totalPages && $totalPages > 0) {
     <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
 
+   <!-- pagination styles -->
+    <link rel="stylesheet" href="z_page.css">
+
 </head>
 <body>
 

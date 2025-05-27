@@ -1,0 +1,31 @@
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.04);
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #ffffff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 1px 1px 3px black;
+}
+
+.pagination a:hover {
+    background-color: #0f172a;
+    color: #fff;
+    border-color: #0f172a;
+}
+
+.pagination a.active {
+    background-color: #074085;
+    color: white;
+    border-color: #074085;
+    font-weight: bold;
+}

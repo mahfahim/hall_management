@@ -55,6 +55,9 @@ if ($role === 'super_admin') {
       <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
 
+   <!-- pagination styles -->
+    <link rel="stylesheet" href="z_page.css">
+
 </head>
 <body>
 
