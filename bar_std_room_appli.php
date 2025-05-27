@@ -16,39 +16,17 @@ $student_id = $_SESSION['student_id'] ?? null;
   <meta charset="UTF-8">
   <title>Room Applications</title>
   <link rel="stylesheet" href="style3.css">
+  
+  <!-- sidebar style -->
+  <link rel="stylesheet" href="z_side.css" />
+
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h2 class="logo">BIJOY 24 HALL</h2>
-    <ul class="nav-links">
-      <?php if ($_SESSION['role'] === 'student') { ?>
-          <li><a href="bar_student.php">🎓 Student Dashboard</a></li>
-          <li><a href="bar_std_payment.php">💳 My Payment</a></li>
-          <li><a href="bar_ad_room.php">🛏️ All Room</a></li>
-          <li><a href="bar_std_room_appli.php">🛏️ Room Application</a></li>
-          <li><a href="bar_std_problem.php">🛠️ Problem Assign</a></li>
-      <?php } elseif ($_SESSION['role'] === 'super_admin') { ?>
-          <li><a href="bar_admin.php">👨‍💼 Admin Dashboard</a></li>
-          <li><a href="bar_ad_student.php">👨‍💼 All Student</a></li>
-          <li><a href="bar_ad_payment.php">💳 Payment</a></li>
-          <li><a href="bar_ad_room.php">🛏️ Room</a></li>
-          <li><a href="bar_ad_problem.php">🛠️ Problem</a></li>
-          <li><a href="bar_ad_room_appli.php">🛠️ Room Application</a></li>
-          <li><a href="bar_ad_notice.php">📢 Notice Manage</a></li>
-      <?php } ?>
-      <li><a href="logout.php">🚪 Logout</a></li>
-    </ul>
-    <div class="user-profile">
-      <span style="font-size: 40px;">👤</span>
-      <span>
-        <?= htmlspecialchars(
-          $_SESSION['student_name'] ?? ($_SESSION['admin_name'] ?? 'User')
-        ); ?>
-      </span>
-    </div>
-  </div>
+ <!-- sidebar -->
+   <?php include 'z_side.php'; ?>
+
+   
 
   <!-- MAIN CONTENT -->
   <div class="main-content">

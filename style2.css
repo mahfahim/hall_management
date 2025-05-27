@@ -7,56 +7,7 @@ body {
     color: #fff;
 }
 
-/* Navbar styles */
-.navbar {
-    background-color: #000000;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    flex-wrap: wrap;
-}
 
-.container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.logo {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.nav-menu {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    flex-wrap: wrap;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-.nav-menu li a:hover {
-    background-color: #ffffff;
-    color: #1a1a1a;
-}
 
 /* Login section */
 .login-boxes {

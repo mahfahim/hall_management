@@ -20,61 +20,7 @@ body {
     justify-content: space-between;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); /* subtle white shadow */
 }
-.container-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 10px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); /* subtle white shadow */
-}
 
-/* Navbar */
-/* Fixed Navbar */
-.navbar {
-    background-color: #000000df;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
-    background-color: rgba(0, 0, 0, 1); /* full opaque initially */
-    transition: background-color 0.3s ease;
-}
-
-/* When scrolled */
-.navbar.scrolled {
-    background-color: rgba(0, 0, 0, 0.8); /* semi-transparent */
-}
-
-
-.logo {
-    color: #ffffff;
-    font-size: 28px;
-    font-weight: 700;
-    text-shadow: 1px 1px 3px black;
-}
-
-.nav-menu {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-}
-
-.nav-menu li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: background 0.3s ease, color 0.3s ease;
-    text-shadow: 1px 1px 2px black;
-}
-
-.nav-menu li a:hover {
-    background-color: #ffffff;
-    color: #1a1a1a;
-}
 
 /* Hero Section */
 .hero-section {
