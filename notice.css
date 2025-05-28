@@ -1,0 +1,92 @@
+/* Down to Up Animation */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Notice Title */
+.notice-title {
+    text-align: center;
+    margin-top: 120px;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    text-shadow: 2px 2px 4px rgba(14, 3, 38, 0.2);
+    background: linear-gradient(90deg, #42484c, #89a2b4); /* Gradient text */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: slideUp 1s ease-out forwards;
+}
+
+/* Container for notices */
+.notice-section {
+    padding: 40px 30px;
+    max-width: 900px;
+    margin: 30px auto 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgb(19, 9, 67);
+    font-family: 'Open Sans', Arial, sans-serif;
+    transition: box-shadow 0.3s ease;
+}
+
+.notice-section:hover {
+    box-shadow: 0 12px 36px rgba(81, 15, 249, 0.15);
+}
+
+/* Notice Table */
+.notice-table {
+    width: 100%;
+    border-collapse: collapse; /* Prevent shaking */
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Table Head */
+.notice-table thead tr {
+    background: linear-gradient(90deg, #42484c, #89a2b4);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    user-select: none;
+}
+
+/* Table header cells */
+.notice-table th {
+    padding: 15px 20px;
+    text-align: left;
+    border: none;
+}
+
+/* Table body rows */
+.notice-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+/* Table body cells */
+.notice-table td {
+    padding: 15px 20px;
+    vertical-align: middle;
+    border: none;
+    color: #444;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(186, 21, 21, 0.05);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Hover effect */
+.notice-table tbody tr:hover td {
+    background-color: #e1e7f0;
+    box-shadow: 0 4px 20px rgba(29, 28, 42, 0.1);
+    cursor: pointer;
+}
+

@@ -1,0 +1,140 @@
+/* Global body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f9f9f9);
+    color: #333;
+    animation: fadeInBody 1s ease-in-out;
+}
+
+/* Login error message */
+.login-error {
+    color: #420003;
+    background-color: #ffbaba;
+    padding: 10px 20px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
+    margin: 20px auto;
+    width: fit-content;
+    animation: fadeSlideDown 0.5s ease-out;
+}
+
+/* Centered container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    min-height: 80vh;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Login box */
+.login-box {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideFadeIn 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Headline */
+.login-box h2 {
+    margin-bottom: 25px;
+    font-size: 26px;
+    color: #333;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.5s;
+}
+
+/* Inputs */
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: fadeInInput 0.6s ease forwards;
+    animation-delay: 0.6s;
+}
+
+/* Button */
+.login-box button {
+    padding: 12px 24px;
+    background-color: #8f959e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    opacity: 0;
+    animation: fadeInInput 0.6s ease forwards;
+    animation-delay: 0.7s;
+}
+
+.login-box button:hover {
+    background-color: rgb(45, 43, 43);
+}
+
+/* Register link */
+.login-box p {
+    margin-top: 20px;
+    font-size: 14px;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.8s;
+}
+
+.login-box a {
+    color: rgb(52, 49, 49);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeInBody {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInInput {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

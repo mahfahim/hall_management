@@ -16,7 +16,7 @@ if (!isset($_SESSION['role'])) {
         <!-- reset  -->
   <link rel="stylesheet" href="z_reset.css">
     
-  <link rel="stylesheet" href="style3.css">
+  <link rel="stylesheet" href="bar_ad_student.css">
 
     <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
@@ -35,10 +35,10 @@ if (!isset($_SESSION['role'])) {
   <div class="main-content">
     <div class="table-section">
       <h2><a href="bar_ad_student_form.php" class="add-button">Add Student</a></h2>
-      <h2>Student List</h2>
+      <h2 style="color:black;">Student List</h2>
       <table class="student-table">
         <thead>
-          <tr>
+          <tr
             <th>ID</th>
             <th>Name</th>
             <th>Reg ID</th>

@@ -43,7 +43,7 @@ if (!$conn) {
 
   <div class="main-content">
     <div class="table-section">
-      <h2 style="text-align:center; margin-bottom: 20px;">Student Problem Section</h2>
+      <h2 style="text-align:center; margin-bottom: 20px; color: #000;">Student Problem Section</h2>
 
       <table class="student-table">
         <thead>

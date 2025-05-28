@@ -52,7 +52,7 @@ if ($page > $totalPages && $totalPages > 0) {
 
   <div class="main-content">
     <div class="table-section">
-      <h2>Room Applications</h2>
+      <h2 style="color:black;">Room Applications</h2>
 
       <!-- Optional Success Message -->
       <?php if (isset($_GET['success'])): ?>

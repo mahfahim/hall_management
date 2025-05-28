@@ -38,7 +38,7 @@ $student_id = $_SESSION['student_id'] ?? null;
   <div class="main-content">
     <div class="table-section">
       <h2 style="text-align:center;"><a href="bar_std_room_appli_form.php" class="add-button">Apply for Room</a></h2>
-      <h2 style="text-align:center;">Your Room Applications</h2>
+      <h2 style="text-align:center; color: #000;">Your Room Applications</h2>
       <table class="student-table">
         <thead>
           <tr>

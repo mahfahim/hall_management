@@ -9,7 +9,7 @@
         <!-- reset  -->
   <link rel="stylesheet" href="z_reset.css">
     
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="notice.css" />
   <!-- Navbar styles -->
     <link rel="stylesheet" href="z_nav.css">
 
@@ -26,7 +26,7 @@
 <!-- navber -->
     <?php include 'z_nav.php'; ?>
 
-<hr>
+
 <h1 class="notice-title">Notice Board</h1>
 
 <div class="notice-section" id="Notice">
@@ -85,6 +85,8 @@
 
     <!-- footer -->
     <?php include 'z_foot.php'; ?>
+
+    <script src="z_nav.js"></script>
 
 </body>
 </html>

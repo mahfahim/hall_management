@@ -1,0 +1,97 @@
+/* Body reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f8f8f8);
+    color: #333;
+}
+
+/* Wrapper */
+.register-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 60px 20px;
+}
+
+/* Container */
+.register-container {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Heading */
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 26px;
+    color: #2c3e50;
+}
+
+/* Label */
+.register-container label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Input Fields */
+.register-container input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+.register-container input:focus {
+    border-color: #2c7be5;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Submit Button */
+.register-container button {
+    width: 100%;
+    padding: 14px;
+    background-color: #8f959e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+    background-color: #3f4145;
+}
+
+/* Text and Link */
+.register-container p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.register-container a {
+    color: #4e4f52;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}

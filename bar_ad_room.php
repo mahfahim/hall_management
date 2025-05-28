@@ -36,7 +36,7 @@ if (!isset($_SESSION['role'])) {
       <?php if ($_SESSION['role'] === 'super_admin') { ?>
         <h2><a href="bar_ad_room_form.php" class="add-button">Add Room</a></h2>
       <?php } ?>
-      <h2>Room List</h2>
+      <h2 style="color:black;">Room List</h2>
       <table class="student-table">
         <thead>
           <tr>

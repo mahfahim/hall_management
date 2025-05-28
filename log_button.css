@@ -1,0 +1,86 @@
+/* General Reset */
+/* Add your reset rules here if needed */
+
+/* Login Section */
+.login-section {
+    padding: 100px 20px;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Login Title */
+.login-title {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    color: #2c3e50;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(100, 94, 112, 0.05);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+/* Login Cards Container */
+.login-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Individual Login Card (Button) */
+.login-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 280px;
+    height: 160px;
+    background: linear-gradient(90deg, #42484c, #44535d);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(50, 38, 159, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+    opacity: 0;
+    animation: slideUpCard 0.6s ease forwards;
+}
+
+/* Apply delay for cascading effect */
+.login-card:nth-child(1) { animation-delay: 0.2s; }
+.login-card:nth-child(2) { animation-delay: 0.4s; }
+.login-card:nth-child(3) { animation-delay: 0.6s; }
+
+.login-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 12px 24px rgba(72, 32, 203, 0.15);
+    background: linear-gradient(90deg, #42484c, #89a2b4);
+}
+
+/* Login Card Text */
+.login-card h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUpCard {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}

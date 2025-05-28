@@ -48,7 +48,7 @@ $totalPages = ceil($totalRow['total'] / $limit);
 <div class="main-content">
   <div class="table-section">
     <h2><a href="bar_ad_notice_form.php" class="add-button">➕ Add Notice</a></h2>
-    <h2>Notice List</h2>
+    <h2 style="color:black;">Notice List</h2>
     <table class="student-table">
       <thead>
         <tr>

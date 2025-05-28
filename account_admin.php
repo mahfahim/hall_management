@@ -1,31 +1,29 @@
-<?php
-if (isset($_SESSION['login_error'])) {
-    echo "<p style='color:red;'>".$_SESSION['login_error']."</p>";
-    unset($_SESSION['login_error']); // Remove after showing
-}
-?>
-
-
+<?php session_start(); ?>
+<?php if (isset($_SESSION['login_error'])): ?>
+    <div class="login-error">
+        <?= $_SESSION['login_error']; ?>
+        <?php unset($_SESSION['login_error']); ?>
+    </div>
+<?php endif; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Login</title>
+    <title>Student Login</title>
 
-        <!-- reset  -->
+    <!-- Reset -->
     <link rel="stylesheet" href="z_reset.css">
-
-    <link rel="stylesheet" href="style2.css">
-
-    <!-- navber -->
-     <link rel="stylesheet" href="z_nav.css"> 
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="account_student.css">
+    <!-- Navbar -->
+    <link rel="stylesheet" href="z_nav.css">
 </head>
 <body>
-    <!-- navber -->
-    <?php include 'z_nav.php'; ?>
 
-    <hr>
-    <div class="login-boxes">
+<!-- Navbar -->
+<?php include 'z_nav.php'; ?>
+
+    <section class="login-container">
         <div class="login-box">
             <h2>🔑 Admin Login</h2>
             <form action="account_admin_back.php" method="post">
@@ -35,6 +33,7 @@ if (isset($_SESSION['login_error'])) {
             </form>
             
         </div>
-    </div>
+    </section>
+
 </body>
 </html>

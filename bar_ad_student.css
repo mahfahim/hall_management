@@ -1,3 +1,5 @@
+
+
 .main-content {
   margin-left: 300px; /* Offset for sidebar */
   padding: 30px;
@@ -15,7 +17,15 @@
   z-index: 1001;
 }
 
-
+.headline {
+  color: #000;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  text-align:center;
+  text-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
+}
+ 
 
 .add-button {
   display: inline-block;

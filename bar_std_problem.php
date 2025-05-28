@@ -74,7 +74,7 @@ if ($role === 'super_admin') {
             <h2 style="text-align:center;"><a href="bar_std_problem_form.php" class="add-button">Add Problem</a></h2>
         <?php endif; ?>
         
-        <h2 style="text-align:center; margin-bottom: 20px;">Reported Problems</h2>
+        <h2 style="text-align:center; margin-bottom: 20px; color: #000;">Reported Problems</h2>
 
         <table class="student-table">
             <thead>

@@ -35,7 +35,7 @@ if (!isset($_SESSION['role'])) {
   <div class="main-content">
     <div class="table-section">
       <h2><a href="bar_ad_payment_form.php" class="add-button">Add Payment</a></h2>
-      <h2>Payment List</h2>
+      <h2 style="color:black;">Payment List</h2>
       <table class="student-table">
         <thead>
           <tr>

@@ -1,0 +1,85 @@
+/* MAIN CONTENT */
+body {
+  background-color: #f4f6f9;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.main-content {
+  margin-left: 300px; /* Offset for sidebar */
+  padding: 40px 30px;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+}
+
+/* Heading */
+.dashboard-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+/* Summary Grid - 2 cards per row */
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 30px;
+  justify-items: center;
+  align-items: stretch;
+}
+
+/* Card Style */
+.dashboard-summary .card {
+  background-color: #ffffff;
+  padding: 25px 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.dashboard-summary .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Text */
+.dashboard-summary .card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #34495e;
+}
+
+.dashboard-summary .card p {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Card Colors */
+.card.students p {
+  color: #2980b9;
+}
+
+.card.rooms p {
+  color: #e67e22;
+}
+
+.card.unreplied p {
+  color: #c0392b;
+}
+
+.card.paid p {
+  color: #27ae60;
+}
+
+/* Responsive fallback for small screens */
+@media (max-width: 768px) {
+  .dashboard-summary {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+  }
+}

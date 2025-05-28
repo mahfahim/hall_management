@@ -35,7 +35,7 @@ $paid_students = mysqli_fetch_assoc($payments_result)['paid_students'];
         <!-- reset  -->
   <link rel="stylesheet" href="z_reset.css">
     
-  <link rel="stylesheet" href="style6.css" />
+  <link rel="stylesheet" href="bar_admin.css" />
 
     <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
