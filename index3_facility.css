@@ -1,66 +1,93 @@
+/* Container */
+.i3-container {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 15px;
+}
 
-    .i3-container {
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-      margin-bottom: 50px;
-    }
+/* Heading */
+h1 {
+  font-size: 36px;
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
 
-    h1 {
-      font-size: 36px;
-      margin-top: 40px;
-      margin-bottom: 5px;
-    }
+/* Subtitle */
+p.subtitle {
+  color: #777;
+  margin-bottom: 40px;
+}
 
-    p.subtitle {
-      color: #777;
-      margin-bottom: 40px;
-    }
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      text-align: left;
-    }
+/* Facility Box */
+.facility {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  border: 1px solid #eee;
+}
 
-    .facility {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      transition: box-shadow 0.3s, transform 0.3s;
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      border: 1px solid #eee;
-    }
+/* Hover Effects */
+.facility:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
 
-    .facility:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-      transform: translateY(-5px);
-    }
+/* Facility Image */
+.facility img {
+  width: 40px;
+  height: 40px;
+}
 
-    .facility img {
-      width: 40px;
-      height: 40px;
-    }
+/* Facility Title */
+.facility-title {
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
 
-    .facility-title {
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
+/* Tablet View */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-   
+/* Mobile View */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 28px;
+  }
 
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
-    @media (max-width: 600px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
+  .facility {
+    flex-direction: row;
+    padding: 15px;
+  }
+
+  .facility-title {
+    font-size: 18px;
+  }
+
+  .facility img {
+    width: 35px;
+    height: 35px;
+  }
+}

@@ -77,7 +77,7 @@
       <div class="facility">
         <img src="https://img.icons8.com/ios/50/classroom.png" alt="Multimedia Classroom">
         <div>
-          <div class="facility-title">Multimedia Classroom</div>
+          <div class="facility-title">Comfortable Readingroom</div>
           <div>Classrooms with advanced audio-visual tools and devices and other digital teaching aids</div>
         </div>
       </div>
@@ -99,14 +99,14 @@
       <div class="facility">
         <img src="https://img.icons8.com/ios/50/test-tube.png" alt="Laboratory">
         <div>
-          <div class="facility-title">Laboratory</div>
-          <div>Latest tools and equipment for hands-on learning experiences</div>
+          <div class="facility-title">Security</div>
+          <div>CCTV Cameras , Security Guard ,24 Hour Security (incl CCTV)</div>
         </div>
       </div>
       <div class="facility">
         <img src="https://img.icons8.com/ios/50/bus.png" alt="Transport">
         <div>
-          <div class="facility-title">Transport</div>
+          <div class="facility-title">Hall Transport</div>
           <div>Convenient commuting for non-resident students</div>
         </div>
       </div>
@@ -120,14 +120,14 @@
       <div class="facility">
         <img src="https://img.icons8.com/ios/50/books.png" alt="Library">
         <div>
-          <div class="facility-title">Library</div>
+          <div class="facility-title">Hall Library</div>
           <div>Diverse collection of books, journals, and digital materials</div>
         </div>
       </div>
       <div class="facility">
         <img src="https://img.icons8.com/ios/50/pill.png" alt="Health Care Center">
         <div>
-          <div class="facility-title">Health Care Center</div>
+          <div class="facility-title">Health and Hygiene</div>
           <div>Comprehensive healthcare services</div>
         </div>
       </div>

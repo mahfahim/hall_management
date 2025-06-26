@@ -1,5 +1,9 @@
-/* General Reset */
-/* Add your reset rules here if needed */
+/* General Reset (optional but recommended) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 /* Login Section */
 .login-section {
@@ -28,7 +32,7 @@
     animation: fadeIn 1s ease-out;
 }
 
-/* Individual Login Card (Button) */
+/* Individual Login Card */
 .login-card {
     display: flex;
     align-items: center;
@@ -43,9 +47,10 @@
     transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
     opacity: 0;
     animation: slideUpCard 0.6s ease forwards;
+    text-align: center;
 }
 
-/* Apply delay for cascading effect */
+/* Delay for cascading animation */
 .login-card:nth-child(1) { animation-delay: 0.2s; }
 .login-card:nth-child(2) { animation-delay: 0.4s; }
 .login-card:nth-child(3) { animation-delay: 0.6s; }
@@ -83,4 +88,37 @@
 @keyframes slideUpCard {
     from { opacity: 0; transform: translateY(50px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Styles */
+
+/* Tablets */
+@media (max-width: 900px) {
+    .login-title {
+        font-size: 2.5rem;
+    }
+    .login-cards {
+        gap: 30px;
+    }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+    .login-section {
+        padding: 60px 15px;
+    }
+
+    .login-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .login-card {
+        width: 100%;
+        height: 140px;
+    }
+
+    .login-card h2 {
+        font-size: 1.2rem;
+    }
 }

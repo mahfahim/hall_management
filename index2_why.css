@@ -108,3 +108,54 @@
     padding: 8px;
     font-weight: bold;
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .i2-choose-section {
+        flex-direction: column;
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .i2-text-content {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .i2-text-content h2 {
+        font-size: 1.6em;
+    }
+
+    .i2-text-content p {
+        font-size: 16px;
+    }
+
+    .i2-read-more {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .i2-carousel-image {
+        height: 250px;
+    }
+
+    .i2-prev,
+    .i2-next {
+        font-size: 20px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .i2-text-content h2 {
+        font-size: 1.4em;
+    }
+
+    .i2-text-content p {
+        font-size: 15px;
+    }
+
+    .i2-carousel-image {
+        height: 200px;
+    }
+}

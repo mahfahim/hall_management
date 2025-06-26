@@ -1,5 +1,3 @@
-
-
 /* Hero Section */
 .hero {
   padding: 100px 0 60px;
@@ -15,7 +13,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%);
   z-index: 0;
 }
 
@@ -32,18 +30,20 @@
   animation: fadeInUp 1s ease-out;
 }
 
+/* VC Image */
 .vc-image {
   width: 200px;
   height: auto;
   border-radius: 50%;
   margin-bottom: 20px;
+  transition: transform 0.3s ease;
 }
-
 
 .vc-image:hover {
   transform: scale(1.05);
 }
 
+/* Message Heading */
 .message h1 {
   font-size: 36px;
   margin-bottom: 20px;
@@ -51,6 +51,7 @@
   font-weight: 700;
 }
 
+/* Message Paragraph */
 .message p {
   font-size: 16px;
   line-height: 1.7;
@@ -59,11 +60,13 @@
   max-width: 800px;
 }
 
+/* Highlighted Text */
 .message strong {
   color: #1a5276;
   font-weight: 600;
 }
 
+/* Animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -72,5 +75,49 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet and smaller */
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 0 40px;
+  }
+
+  .vc-image {
+    width: 150px;
+  }
+
+  .message h1 {
+    font-size: 28px;
+  }
+
+  .message p {
+    font-size: 15px;
+    max-width: 90%;
+  }
+}
+
+/* Mobile (small devices) */
+@media (max-width: 480px) {
+  .hero {
+    padding: 60px 0 30px;
+  }
+
+  .vc-image {
+    width: 120px;
+  }
+
+  .message h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .message p {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 12px;
   }
 }

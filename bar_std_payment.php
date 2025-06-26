@@ -36,7 +36,7 @@ $student_id = $_SESSION['student_id']; // Student ID must be stored in session
   <div class="main-content">
     
     <div class="table-section">
-      <h2 style="text-align:center; margin-bottom: 20px;"><a href="bar_std_payment_form.php" class="add-button">Add Payment</a></h2>
+      <h2 style="text-align:center; margin-bottom: 20px;"><a href="bar_std_pay.php" class="add-button">Add Payment</a></h2>
       <h2 style="text-align: center; color:black;">My Payment History</h2>
       <table class="student-table">
         <thead>

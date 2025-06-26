@@ -1,21 +1,27 @@
-.main-content {
-  margin-left: 300px; /* Offset for sidebar */
-  padding: 30px;
-  min-height: 100vh;
-
-  flex: 1;
-  
+/* Base reset and layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f4f4;
+  display: flex;
 }
 
-/* Fixed Add Problem button */
+/* Main Content */
+.main-content {
+  margin-left: 300px;
+  padding: 30px;
+  min-height: 100vh;
+  flex: 1;
+}
+
+/* Fixed Add Problem Button */
 .fixed-button-container {
   position: fixed;
   bottom: 30px;
   right: 40px;
   z-index: 1001;
 }
-
-
 
 .add-button {
   display: inline-block;
@@ -27,7 +33,7 @@
   margin-bottom: 1px;
   border-radius: 8px;
   text-decoration: none;
-  text-align:center;
+  text-align: center;
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -39,10 +45,11 @@
   outline: none;
 }
 
+/* Action Buttons */
 .edit-btn {
   display: inline-block;
   padding: 6px 12px;
-  background-color: #28a745; /* Green */
+  background-color: #28a745;
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -58,7 +65,7 @@
 .delete-btn {
   display: inline-block;
   padding: 6px 12px;
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545;
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -70,7 +77,6 @@
   background-color: #c82333;
 }
 
-
 /* Table Section */
 .table-section {
   max-width: 100%;
@@ -80,23 +86,22 @@
 .table-section h2 {
   font-size: 26px;
   margin-bottom: 25px;
-  color: #ffffff;
+  color: #111827;
   font-weight: 700;
   text-align: center;
 }
 
-/* Table styling */
+/* Table Styling */
 .student-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
 }
 
-/* Table Header */
 .student-table thead tr {
   background-color: #111827;
   color: #f1f1f1;
@@ -108,7 +113,6 @@
   font-weight: 600;
 }
 
-/* Table Body Rows */
 .student-table tbody tr {
   border-bottom: 1px solid #e1e1e1;
   transition: background-color 0.25s ease;
@@ -123,7 +127,6 @@
   cursor: default;
 }
 
-/* Table Cells */
 .student-table tbody td {
   padding: 12px 18px;
   vertical-align: middle;
@@ -132,7 +135,7 @@
   max-width: 200px;
 }
 
-/* Responsive */
+/* Responsive Media Queries */
 @media screen and (max-width: 900px) {
   .sidebar {
     width: 200px;
@@ -141,11 +144,46 @@
 
   .main-content {
     margin-left: 200px;
-    padding: 30px 30px;
+    padding: 30px 20px;
   }
 
   .sidebar .logo {
     font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-content {
+    padding: 20px;
+  }
+
+  .student-table thead {
+    display: none;
+  }
+
+  .student-table tbody td {
+    display: block;
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .student-table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 18px;
+    width: 45%;
+    padding-right: 10px;
+    font-weight: bold;
+    text-align: left;
+    color: #111827;
+  }
+
+  .student-table tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
   }
 }
 
@@ -191,10 +229,26 @@
     padding: 20px 15px;
   }
 
+  .fixed-button-container {
+    position: static;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .add-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
   .student-table tbody td {
-    max-width: 100px;
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    font-size: 13px;
+    padding: 5px 10px;
   }
 }
-
-
-

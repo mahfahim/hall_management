@@ -1,3 +1,11 @@
+/* Base Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #ffffff, #f8f8f8);
+    color: #333;
+}
 
 /* Container Utility */
 .container {
@@ -7,11 +15,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05); /* subtle white shadow */
+    flex-wrap: wrap;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
-
-
-
 
 /* Administration Section */
 .administration-section {
@@ -45,7 +51,7 @@
     color: #fff;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.05); /* white shadow for dark card */
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.05);
     transition: transform 0.3s ease;
 }
 
@@ -110,11 +116,6 @@
     line-height: 1.6;
 }
 
-
-
-
-
-
 /* Apply Now Button */
 .apply-now {
     position: absolute;
@@ -134,4 +135,53 @@
     background: darkred;
 }
 
- 
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .administration-section h1,
+    .contact-section h1 {
+        font-size: 28px;
+    }
+
+    .card img {
+        height: 220px;
+    }
+
+    .card-body h5 {
+        font-size: 18px;
+    }
+
+    .contact-card {
+        padding: 25px 20px;
+    }
+
+    .contact-card h3 {
+        font-size: 20px;
+    }
+
+    .apply-now {
+        position: static;
+        margin-top: 20px;
+        right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-body p,
+    .contact-card p {
+        font-size: 14px;
+    }
+
+    .apply-now {
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 12px;
+        font-size: 16px;
+    }
+}

@@ -77,9 +77,53 @@ body {
   color: #27ae60;
 }
 
-/* Responsive fallback for small screens */
-@media (max-width: 768px) {
+/* ---------------- RESPONSIVE ---------------- */
+
+/* Tablet and small desktops */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 250px;
+    padding: 30px 20px;
+  }
   .dashboard-summary {
-    grid-template-columns: 1fr; /* Stack cards vertically */
+    grid-template-columns: repeat(1, 1fr); /* Stack cards vertically */
+    gap: 25px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+  .main-content {
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 25px;
+  }
+
+  .dashboard-summary .card {
+    max-width: 100%;
+    padding: 20px 15px;
+  }
+
+  .dashboard-summary .card h3 {
+    font-size: 18px;
+  }
+
+  .dashboard-summary .card p {
+    font-size: 20px;
+  }
+}
+
+/* Very small devices */
+@media (max-width: 400px) {
+  .dashboard-title {
+    font-size: 20px;
+  }
+
+  .dashboard-summary .card p {
+    font-size: 18px;
   }
 }

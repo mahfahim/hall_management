@@ -20,6 +20,7 @@ if (isset($_GET['delete'])) {
 // Edit Room
 $editMode = false;
 $editRoom = [];
+$errorMsg = '';
 
 if (isset($_GET['edit'])) {
     $editMode = true;
@@ -40,19 +41,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
     $edit_id = isset($_POST['edit-id']) ? intval($_POST['edit-id']) : null;
 
-    if ($edit_id) {
-        $stmt = mysqli_prepare($conn, "UPDATE rooms SET room_number = ?, block_name = ?, capacity = ?, current_occupancy = ?, status = ? WHERE id = ?");
-        mysqli_stmt_bind_param($stmt, "ssiisi", $room_number, $block_name, $capacity, $current_occupancy, $status, $edit_id);
+    // Validation
+    if ($current_occupancy > $capacity) {
+        $errorMsg = "Available seat cannot be more than total capacity.";
+    } elseif ($current_occupancy <= 0) {
+        $errorMsg = "Room is unavailable. No available seats.";
     } else {
-        $stmt = mysqli_prepare($conn, "INSERT INTO rooms (room_number, block_name, capacity, current_occupancy, status) VALUES (?, ?, ?, ?, ?)");
-        mysqli_stmt_bind_param($stmt, "ssiis", $room_number, $block_name, $capacity, $current_occupancy, $status);
-    }
+        // Only decrease availability if it's a new entry
+        if (!$edit_id) {
+            $current_occupancy -= 1;
+        }
 
-    if (mysqli_stmt_execute($stmt)) {
-        header("Location: bar_ad_room.php");
-        exit();
-    } else {
-        echo "<script>alert('Database error: " . mysqli_error($conn) . "');</script>";
+        if ($edit_id) {
+            $stmt = mysqli_prepare($conn, "UPDATE rooms SET room_number = ?, block_name = ?, capacity = ?, current_occupancy = ?, status = ? WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "ssiisi", $room_number, $block_name, $capacity, $current_occupancy, $status, $edit_id);
+        } else {
+            $stmt = mysqli_prepare($conn, "INSERT INTO rooms (room_number, block_name, capacity, current_occupancy, status) VALUES (?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmt, "ssiis", $room_number, $block_name, $capacity, $current_occupancy, $status);
+        }
+
+        if (mysqli_stmt_execute($stmt)) {
+            header("Location: bar_ad_room.php");
+            exit();
+        } else {
+            $errorMsg = "Database error: " . mysqli_error($conn);
+        }
     }
 }
 ?>
@@ -62,25 +75,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Room Management</title>
-        <!-- reset  -->
   <link rel="stylesheet" href="z_reset.css">
-    
   <link rel="stylesheet" href="style4.css">
-
-  <!-- sidebar style -->
   <link rel="stylesheet" href="z_side.css" />
-
+  <style>
+    .error-message {
+      color: red;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- sidebar -->
-   <?php include 'z_side.php'; ?>
-
+<?php include 'z_side.php'; ?>
 
 <div class="main-content">
   <div class="form-container">
     <h2><?= $editMode ? 'Edit Room' : 'Add Room' ?></h2>
-    <form action="" method="post">
+
+    <?php if (!empty($errorMsg)) : ?>
+      <div class="error-message"><?= htmlspecialchars($errorMsg) ?></div>
+    <?php endif; ?>
+
+    <form action="" method="post" onsubmit="return validateForm()">
       <input type="hidden" name="edit-id" value="<?= $editMode ? htmlspecialchars($editRoom['id']) : '' ?>">
 
       <div class="form-group">
@@ -118,5 +136,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
   </div>
 </div>
+
+<script>
+function validateForm() {
+  const capacity = parseInt(document.getElementById('capacity').value);
+  const available = parseInt(document.getElementById('current-occupancy').value);
+
+  if (available > capacity) {
+    alert("Available seat cannot be more than total seat quantity.");
+    return false;
+  }
+
+  if (available <= 0) {
+    alert("Seat is unavailable.");
+    return false;
+  }
+
+  return true;
+}
+</script>
+
 </body>
 </html>

@@ -1,12 +1,9 @@
-
-
+/* Main Content */
 .main-content {
-  margin-left: 300px; /* Offset for sidebar */
+  margin-left: 300px;
   padding: 30px;
   min-height: 100vh;
-
   flex: 1;
-  
 }
 
 /* Fixed Add Problem button */
@@ -17,16 +14,17 @@
   z-index: 1001;
 }
 
+/* Headline */
 .headline {
   color: #000;
   font-weight: 600;
   font-size: 16px;
   text-decoration: none;
-  text-align:center;
+  text-align: center;
   text-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
 }
- 
 
+/* Add Button */
 .add-button {
   display: inline-block;
   background-color: #111827;
@@ -37,7 +35,7 @@
   margin-bottom: 1px;
   border-radius: 8px;
   text-decoration: none;
-  text-align:center;
+  text-align: center;
   box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -49,10 +47,11 @@
   outline: none;
 }
 
+/* Edit Button */
 .edit-btn {
   display: inline-block;
   padding: 6px 12px;
-  background-color: #28a745; /* Green */
+  background-color: #28a745;
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -65,10 +64,11 @@
   background-color: #218838;
 }
 
+/* Delete Button */
 .delete-btn {
   display: inline-block;
   padding: 6px 12px;
-  background-color: #dc3545; /* Red */
+  background-color: #dc3545;
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -79,7 +79,6 @@
 .delete-btn:hover {
   background-color: #c82333;
 }
-
 
 /* Table Section */
 .table-section {
@@ -95,18 +94,17 @@
   text-align: center;
 }
 
-/* Table styling */
+/* Table Styling */
 .student-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 15px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
 }
 
-/* Table Header */
 .student-table thead tr {
   background-color: #111827;
   color: #f1f1f1;
@@ -118,7 +116,6 @@
   font-weight: 600;
 }
 
-/* Table Body Rows */
 .student-table tbody tr {
   border-bottom: 1px solid #e1e1e1;
   transition: background-color 0.25s ease;
@@ -133,7 +130,6 @@
   cursor: default;
 }
 
-/* Table Cells */
 .student-table tbody td {
   padding: 12px 18px;
   vertical-align: middle;
@@ -142,7 +138,9 @@
   max-width: 200px;
 }
 
-/* Responsive */
+/* ------------------- RESPONSIVE ------------------- */
+
+/* Tablets and medium screens */
 @media screen and (max-width: 900px) {
   .sidebar {
     width: 200px;
@@ -151,7 +149,7 @@
 
   .main-content {
     margin-left: 200px;
-    padding: 30px 30px;
+    padding: 30px;
   }
 
   .sidebar .logo {
@@ -159,6 +157,7 @@
   }
 }
 
+/* Mobile and small screens */
 @media screen and (max-width: 600px) {
   body {
     flex-direction: column;
@@ -171,6 +170,9 @@
     flex-direction: row;
     padding: 15px 10px;
     justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #111827;
   }
 
   .sidebar .nav-links {
@@ -188,6 +190,7 @@
   .sidebar .nav-links a {
     padding: 8px 10px;
     font-size: 14px;
+    color: #fff;
   }
 
   .sidebar .user-profile {
@@ -201,10 +204,49 @@
     padding: 20px 15px;
   }
 
-  .student-table tbody td {
-    max-width: 100px;
+  .student-table thead {
+    display: none;
+  }
+
+  .student-table,
+  .student-table tbody,
+  .student-table tr,
+  .student-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .student-table tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ccc;
+  }
+
+  .student-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    font-size: 14px;
+  }
+
+  .student-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    color: #111827;
+  }
+
+  .fixed-button-container {
+    right: 15px;
+    bottom: 20px;
+  }
+
+  .add-button {
+    font-size: 14px;
+    padding: 6px 16px;
   }
 }
-
-
-

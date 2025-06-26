@@ -10,6 +10,7 @@
     align-items: center;
     text-align: center;
     box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.7); /* inner black shadow */
+    padding: 0 20px; /* small side padding for small screens */
 }
 
 .i1-hero-section .i1-hero-content h1 {
@@ -23,4 +24,32 @@
     font-size: 20px;
     color: #fff;
     text-shadow: 1px 1px 4px black;
+}
+
+/* Responsive for tablets and smaller screens */
+@media (max-width: 768px) {
+    .i1-hero-section {
+        height: 70vh;
+    }
+    .i1-hero-section .i1-hero-content h1 {
+        font-size: 36px;
+    }
+    .i1-hero-section .i1-hero-content p {
+        font-size: 16px;
+    }
+}
+
+/* Responsive for mobile phones */
+@media (max-width: 480px) {
+    .i1-hero-section {
+        height: 60vh;
+        padding: 0 15px;
+    }
+    .i1-hero-section .i1-hero-content h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    .i1-hero-section .i1-hero-content p {
+        font-size: 14px;
+    }
 }
